@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleInjector.Integration.AspNetCore.Mvc.Core</name>
+    </assembly>
+    <members>
+        <member name="T:SimpleInjector.SimpleInjectorAspNetCoreBuilderMvcCoreExtensions">
+            <summary>
+            Extension methods for <see cref="T:SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder"/> that allow integrating
+            Simple Injector with ASP.NET Core MVC controllers and view components.
+            </summary>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreBuilderMvcCoreExtensions.AddControllerActivation(SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder)">
+            <summary>
+            Registers all application's controllers in Simple Injector and instructs ASP.NET Core to let
+            Simple Injector create those controllers.
+            </summary>
+            <param name="builder">The builder instance.</param>
+            <returns>The supplied <paramref name="builder"/> instance.</returns>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreBuilderMvcCoreExtensions.AddViewComponentActivation(SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder)">
+            <summary>
+            Registers all application's view components in Simple Injector and instructs ASP.NET Core to let
+            Simple Injector create those view components.
+            </summary>
+            <param name="builder">The builder instance.</param>
+            <returns>The supplied <paramref name="builder"/> instance.</returns>
+        </member>
+        <member name="T:SimpleInjector.SimpleInjectorAspNetCoreMvcIntegrationExtensions">
+            <summary>
+            Extension methods for integrating Simple Injector with ASP.NET Core MVC applications.
+            </summary>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreMvcIntegrationExtensions.RegisterMvcControllers(SimpleInjector.Container,Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Registers the ASP.NET Core MVC controller instances that are defined in the application through
+            the <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager"/>.
+            </summary>
+            <param name="container">The container the controllers should be registered in.</param>
+            <param name="applicationBuilder">The ASP.NET object that holds the application's configuration.
+            </param>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreMvcIntegrationExtensions.RegisterMvcViewComponents(SimpleInjector.Container,Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Registers the ASP.NET Core MVC view component instances that are defined in the application.
+            </summary>
+            <param name="container">The container the controllers should be registered in.</param>
+            <param name="applicationBuilder">The ASP.NET object that holds the
+            <see cref="T:Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentDescriptorProvider"/> that allows retrieving the application's controller types.
+            </param>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreMvcIntegrationExtensions.RegisterMvcViewComponents(SimpleInjector.Container,Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentDescriptorProvider)">
+            <summary>
+            Registers the ASP.NET view component types using the supplied
+            <paramref name="viewComponentDescriptorProvider"/>.
+            </summary>
+            <param name="container">The container the controllers should be registered in.</param>
+            <param name="viewComponentDescriptorProvider">The provider that contains the list of view
+            components to register.</param>
+        </member>
+        <member name="T:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorControllerActivator">
+            <summary>Controller activator for Simple Injector.</summary>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorControllerActivator.#ctor(SimpleInjector.Container)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorControllerActivator"/> class.
+            </summary>
+            <param name="container">The container instance.</param>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorControllerActivator.Create(Microsoft.AspNetCore.Mvc.ControllerContext)">
+            <summary>Creates a controller.</summary>
+            <param name="context">The Microsoft.AspNet.Mvc.ActionContext for the executing action.</param>
+            <returns>A new controller instance.</returns>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorControllerActivator.Release(Microsoft.AspNetCore.Mvc.ControllerContext,System.Object)">
+            <summary>Releases the controller.</summary>
+            <param name="context">The Microsoft.AspNet.Mvc.ActionContext for the executing action.</param>
+            <param name="controller">The controller instance.</param>
+        </member>
+        <member name="T:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorViewComponentActivator">
+            <summary>
+            View component activator for Simple Injector.
+            </summary>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorViewComponentActivator.#ctor(SimpleInjector.Container)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorViewComponentActivator"/> class.
+            </summary>
+            <param name="container">The container instance.</param>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorViewComponentActivator.Create(Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentContext)">
+            <summary>Creates a view component.</summary>
+            <param name="context">The <see cref="T:Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentContext"/> for the executing <see cref="T:Microsoft.AspNetCore.Mvc.ViewComponent"/>.</param>
+            <returns>A view component instance.</returns>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorViewComponentActivator.Release(Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentContext,System.Object)">
+            <summary>Releases the view component.</summary>
+            <param name="context">The <see cref="T:Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentContext"/> associated with the viewComponent.</param>
+            <param name="viewComponent">The view component to release.</param>
+        </member>
+    </members>
+</doc>

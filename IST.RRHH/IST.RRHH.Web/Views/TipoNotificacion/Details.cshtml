@@ -1,0 +1,82 @@
+
+@model IST.RRHH.Web.Models.TipoNotificacion.CreateViewModel
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Detalle TipoNotificacion</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("Index", "TipoNotificacion")">TipoNotificacion</a>
+            </li>
+            <li class="active breadcrumb-item">
+                <strong>Detalle TipoNotificacion</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    @using (Html.BeginForm())
+    {
+        
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li><a class="nav-link active" data-toggle="tab" href="#tab-1"> TipoNotificacion</a></li>                        
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="panel-body">
+
+                                <fieldset>
+
+
+ 
+									<div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">TipoNotificacionId:</label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(c => c.TipoNotificacionId)
+
+                                        </div>
+                                    </div>
+		 
+									<div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Nombre:</label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(c => c.Nombre)
+
+                                        </div>
+                                    </div>
+		
+                                </fieldset>
+                            </div>
+                        </div>
+                                             
+                        <button id="btnPost" type="submit">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Styles {
+    
+}
+
+@section Scripts {       
+
+    <script type="text/javascript">
+
+         $(document).ready(function () {
+
+           
+        }); 
+
+    </script>
+}
+
+
+ 

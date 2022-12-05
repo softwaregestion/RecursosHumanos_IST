@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="es" @ViewData["HtmlAttribute"]>
+<head>
+    <meta charset="utf-8" />
+    <title>Sistema Contratista</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="@ViewData["MetaDescription"]" />
+    <meta name="author" content="@ViewData["MetaAuthor"]" />
+    <meta name="keywords" content="@ViewData["MetaKeywords"]" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" type="image/jpg" href="~/img/favicon.png" />
+    
+
+    @*<meta http-equiv="X-UA-Compatible" content="IE=edge">*@
+
+    @RenderSection("MetaTag", required: false)
+
+    <!-- ================== BEGIN core-css ================== -->
+    <link href="@IST.RRHH.Web.AppConfig.UrlWeb/css/vendor.min.css" rel="stylesheet" />
+    <link href="@IST.RRHH.Web.AppConfig.UrlWeb/css/app.min.css" rel="stylesheet" />
+    <!-- ================== END core-css ================== -->
+
+    @RenderSection("Styles", required: false)
+</head>
+<body class="@ViewData["BodyClass"]">
+    <!-- BEGIN #app -->
+    
+    <div id="app" class="app @ViewData["AppClass"]">
+
+        @if (ViewData["AppWithoutHeader"] == null)
+        {
+            <partial name="_Header2" />
+        }
+        @if (ViewData["AppWithoutSidebar"] == null)
+        {
+            @*<partial name="_Sidebar" />*@
+        }
+        <div style="margin-top: -60px;">
+            <partial name="_Alert" />
+        </div>
+        
+
+        @if (ViewData["AppWithoutContainer"] == null)
+        {
+            <div style="margin-top: -60px;" id="content" class="container @ViewData["AppContentClass"]">
+
+
+                @RenderBody()
+
+                <!-- BEGIN btn-scroll-top -->
+                <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+                <!-- END btn-scroll-top -->
+            </div>
+        }
+        else
+        {
+            @RenderBody()
+
+            <!-- BEGIN btn-scroll-top -->
+            <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+            <!-- END btn-scroll-top -->
+        }
+
+        @RenderSection("OutterAppContainerContent", required: false)
+
+        @if (ViewData["AppWithFooter"] != null)
+        {
+            <partial name="_Footer" />
+        }
+    </div>
+
+    <!-- ================== BEGIN core-js ================== -->
+    <script src="~/js/vendor.min.js"></script>
+    <script src="~/js/app.min.js"></script>
+    <!-- ================== END core-js ================== -->
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

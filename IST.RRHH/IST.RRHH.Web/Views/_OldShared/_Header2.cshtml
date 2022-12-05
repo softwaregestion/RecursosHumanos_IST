@@ -1,0 +1,300 @@
+﻿<style>
+    .navbarstyle {
+        /*position: fixed;*/
+        left: 0;
+        right: 0;
+        top: -60px;
+        /*margin-top: -60px;*/
+        border-bottom: 5px solid #cf2484;
+    }
+    .dropdown-item:active {
+        color: #fff !important;
+        text-decoration: none;
+        background-color: #702fa0;
+    }
+    
+</style>
+<nav class="navbarstyle  navbar navbar-expand-lg navbar-light bg-light" style="background: #FFFFFF !important;">
+    <div class="container">
+        <a href="@IST.RRHH.Web.AppConfig.UrlWeb/" class="brand-logo">
+            <img src="~/img/logo-web.png" alt="" height="40" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div style="margin-top: 0px; margin-left: 15px; " class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Administrador"))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: #702fa0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Adherente
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="@Url.Action("Create", "Adherente")" style="color: #702fa0">Crear adherentes</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "Adherente")" style="color: #702fa0">Ver adherentes</a></li>
+                            <li><a class="dropdown-item" style="color: #702fa0" href="@Url.Action("Index", "GestorDocumental")">Ver Lista de gestores documentales</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: #702fa0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Contratista
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="@Url.Action("Create", "Contratista")" style="color: #702fa0">Crear contratista</a></li>
+                            @*<li><a class="nav-link active" href="@Url.Action("Index", "Contratista")" style="color: #702fa0">Ver contratista</a></li>*@
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "Contratista")" style="color: #702fa0">Ver contratistas</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: #702fa0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Mantenedores
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            @*<li><a class="dropdown-item" style="color: #702fa0" href="@Url.Action("Index", "GestorDocumental")">Gestor Documental</a></li>*@
+                            @*<li><a class="dropdown-item" style="color: #702fa0" href="@Url.Action("Index", "GestorDocumentalArchivo")">Gestor Documental Archivo</a></li>*@
+                            <li><a class="dropdown-item" style="color: #702fa0" href="@Url.Action("Index", "GestorDocumentalEstado")">Gestor Documental Estado</a></li>
+                            <li><a class="dropdown-item" style="color: #702fa0" href="@Url.Action("Index", "GestorDocumentarPeriodo")">Gestor Documental Periodo</a></li>
+                            @*<li><a class="dropdown-item" style="color: #702fa0" href="@Url.Action("Index", "GestorDocumentalResponsable")">Gestor Documental Responsable</a></li>*@
+                            @*<li><a class="dropdown-item" style="color: #702fa0" href="@Url.Action("Index", "GestorDocumentalContratista")">Gestor Documental Contratista</a></li>*@
+                            @*<li><a class="dropdown-item" style="color: #702fa0" href="@Url.Action("Index", "GestorDocumentalContratistaConfiguracion")">Gestor Documental Contratista Configuracion</a></li>*@
+                            @*<li><a class="dropdown-item" style="color: #702fa0" href="@Url.Action("Index", "GestorDocumentalContratistaDocumentos")">Gestor Documental Contratista Documentos</a></li>*@
+
+                            <li><a class="dropdown-item" style="color: #702fa0" href="@Url.Action("Index", "Notificacion")">Notificacion</a></li>
+                            <li><a class="dropdown-item" style="color: #702fa0" href="@Url.Action("Index", "TipoNotificacion")">Tipo Notificacion</a></li>
+                            <li><a class="dropdown-item" style="color: #702fa0" href="@Url.Action("Index", "TipoArchivo")">Tipo Archivo</a></li>
+                            <li><a class="dropdown-item" style="color: #702fa0" href="@Url.Action("Index", "CentroIst")">Centro Ist</a></li>
+                            @*<li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>*@
+                        </ul>
+                    </li>
+                }
+                else if (User.Identity.IsAuthenticated && User.IsInRole("Adherente"))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: #702fa0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Menu adherente
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#" onclick="perfilAdherente()" style="color: #702fa0">Mi perfil Adherente <i class="fa fa-user-circle fa-fw ms-auto text-gray-400 f-s-16"></i></a></li>
+                            <li><a class="dropdown-item" href="#" onclick="verListaContratista()" style="color: #702fa0">Ver Lista de contratistas</a></li>
+                            <li><a class="dropdown-item" style="color: #702fa0" onclick="verGestorDocumental()" href="#">Ver Lista de gestores documentales</a></li>
+
+                        </ul>
+                    </li>
+                }
+                else if (User.Identity.IsAuthenticated && User.IsInRole("Contratista"))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: #702fa0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Menu contratista
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <li><a class="dropdown-item" href="#" onclick="verListaTrabajadores()" style="color: #702fa0">Ver Lista de trabajadores</a></li>
+                            <li><a class="dropdown-item" style="color: #702fa0" onclick="verGestorDocumentalContratista()" href="#">Gestores documentales</a></li>
+
+                        </ul>
+                    </li>
+                }
+                else if (User.Identity.IsAuthenticated && User.IsInRole("Trabajador"))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: #702fa0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Menu trabajador
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+                            <li><a class="dropdown-item" style="color: #702fa0" onclick="verGestorDocumentalTrabajador()" href="#">Ver gestor documental</a></li>
+
+                        </ul>
+                    </li>
+                }
+                else { 
+                    <li>
+
+                        <script type="text/javascript">
+ 
+                    alert('Su navegador tiene cookies antiguas, que serán actualizadas, si el problema persiste, contacte con su administrador.')
+                    window.location = '@IST.RRHH.Web.AppConfig.UrlWeb' + "/User/SignOut"
+ 
+
+                        </script>
+                    </li>
+                    
+                }
+
+            </ul>
+            <form class=" ">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: #702fa0; min-width: 200px;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                            <strong>@*<i class="fas fa-lg fa-fw  fa-user"></i>*@ @User.Identity.Name</strong>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a style="color: #702fa0" class="dropdown-item d-flex align-items-center" href="~/MyAccount/index">Mi Perfil <i class="fa fa-user-circle fa-fw ms-auto text-gray-400 f-s-16"></i></a></li>
+                            @*@if (User.Identity.IsAuthenticated && User.IsInRole("Adherente"))
+                            {
+                                <li><a style="color: #702fa0" class="dropdown-item d-flex align-items-center" href="@Url.Action("Edit","Adherente", new { userId = User.Identity[1]. })">Perfil Adherente<i class="fa fa-user-circle fa-fw ms-auto text-gray-400 f-s-16"></i></a></li>
+                            }*@
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Administrador"))
+                            {
+                                <li><a style="color: #702fa0" class="dropdown-item d-flex align-items-center" href="~/User/Create">Crear Usuario <i class="fa fa-envelope fa-fw ms-auto text-gray-400 f-s-16"></i></a></li>
+
+                                <li><a style="color: #702fa0" class="dropdown-item d-flex align-items-center" href="~/User/admin">Listado de usuarios <i class="fa fa-wrench fa-fw ms-auto text-gray-400 f-s-16"></i></a></li>
+                            }                             
+                            
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a style="color: #702fa0"  class="dropdown-item d-flex align-items-center" href="~/User/SignOut" id="myCheck">Salir <i class="fa fa-toggle-off fa-fw ms-auto text-gray-400 f-s-16"></i></a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<style>
+    @@media(max-width: 991.98px) {
+
+        #navbarSupportedContent {
+            position: absolute !important;
+            background-color: white !important;
+            left: -5%;
+            right: -5%;
+            text-align: center; 
+            top: 61px;
+        }
+
+        .navbar-nav .dropdown-menu {
+            width: 93%;
+        }
+    }
+</style>
+
+<script>
+    function cerrarSesion() {
+        //~/User/SignOutAsync
+        window.location = '@IST.RRHH.Web.AppConfig.UrlWeb' +'/User/SignOutAsync';
+    }
+
+    function perfilAdherente() {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("UserId", "Contratista")",
+            content: "application/json; charset=utf-8",
+            dataType: "json",
+
+            success: function (d) {
+
+
+                window.location = '@IST.RRHH.Web.AppConfig.UrlWeb' + '/Adherente/Edit?userId=' + d;
+
+
+
+            }
+            });
+    }
+
+    function verListaContratista() {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("UserId", "Contratista")",
+            content: "application/json; charset=utf-8",
+            dataType: "json",
+
+            success: function (d) {
+
+                console.log(d);
+
+                window.location = '@IST.RRHH.Web.AppConfig.UrlWeb' +'/Contratista/ListaContratistas?userId=' + d;
+
+
+            }
+            });
+    }
+    function verGestorDocumental() {
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("UserId", "Contratista")",
+            content: "application/json; charset=utf-8",
+            dataType: "json",
+
+            success: function (d) {
+
+
+
+                window.location = '@IST.RRHH.Web.AppConfig.UrlWeb' +'/GestorDocumental/Index?id=' + d;
+
+
+            }
+            });
+
+
+    }
+
+    function verGestorDocumentalContratista() {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("UserId", "Contratista")",
+            content: "application/json; charset=utf-8",
+            dataType: "json",
+
+            success: function (d) {
+
+
+
+                window.location = '@IST.RRHH.Web.AppConfig.UrlWeb' +'/Contratista/ListaGestorDocumentalContratista?userId=' + d;
+
+
+            }
+            });
+    }
+
+    function verListaTrabajadores() {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("UserId", "Contratista")",
+            content: "application/json; charset=utf-8",
+            dataType: "json",
+
+            success: function (d) {
+
+                console.log(d);
+
+                window.location = '@IST.RRHH.Web.AppConfig.UrlWeb' +'/ContratistaPersonal/ListaTrabajadores?userId=' + d;
+
+
+            }
+            });
+    }
+
+    function verGestorDocumentalTrabajador() {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("UserId", "Contratista")",
+            content: "application/json; charset=utf-8",
+            dataType: "json",
+
+            success: function (d) {
+
+
+
+                window.location = '@IST.RRHH.Web.AppConfig.UrlWeb' +'/ContratistaPersonal/Documento?id=' + d;
+
+
+            }
+            });
+    }
+
+</script>

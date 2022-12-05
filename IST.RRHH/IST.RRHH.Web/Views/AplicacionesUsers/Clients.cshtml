@@ -1,0 +1,135 @@
+﻿@model IST.RRHH.Web.Helpers.ModelUsers
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container body-content">
+
+    @if (ViewBag.Error != null)
+    {
+        <h3 class="alert alert-danger">@ViewBag.Error</h3>
+    }
+    @if (ViewBag.Success != null)
+    {
+        <h3 class="alert alert-success">@ViewBag.Success</h3>
+    }
+
+
+
+<div class="container body-content">
+
+
+ 
+    <div class="panel  panel-default " style="padding:20px">
+        
+        <div class="row">
+            <div class="col-md-3">
+                
+            </div>
+            <div class="col-md-9">
+
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Listado de aplicaciones de usuario</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th width="220">
+                                        Aplicación
+                                    </th>
+                                    
+                                    <th class="text-center" width="160">
+                                        Acceso
+                                    </th>
+                                    
+                                    <th class="text-center" width="160"  style="display:none">
+                                        Administra Usuario
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                @foreach (var item in Model.AppSystem)
+                                {
+                                    var habilitad = Model.Clients.Any(c => c.Nombre == item);
+                                    var habilitadUserAdmin = Model.ClientsAdminUser.Any(c => c.Nombre == item);
+                                <tr>
+                                    <td>
+                                        @item.ToUpper()
+                                    </td>
+                                    
+                                    <td class="text-center">
+
+                                        @if (habilitad)
+                                        {
+                                            <form action="~/aplicacionesusers/DeleteApplication" method="post">
+                                                <input type="hidden" id="Id" name="Id" value="@Model.Id">
+                                                <input type="hidden" value="@item" name="item">
+                                                <input type="submit" value="Remover" class="btn btn-warning btn-sm">
+
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <form action="~/aplicacionesusers/AddApplication" method="post">
+                                                <input type="hidden" id="Id" name="Id" value="@Model.Id">
+                                                <input type="hidden" value="@item" name="item">
+                                                <input type="submit" value="Habilitar" class="btn btn-primary btn-sm">
+                                            </form>
+
+                                        }
+                                    </td>
+                                    
+
+                                    <td class="text-center" style="display:none">
+                                        @if (habilitadUserAdmin)
+                                        {
+                                            <form action="~/aplicacionesusers/DeleteApplicationAdminUser" method="post">
+                                                <input type="hidden" id="Id" name="Id" value="@Model.Id">
+                                                <input type="hidden" value="@item" name="item">
+                                                <input type="submit" value="Desactivar" class="btn btn-warning btn-sm">
+
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <form action="~/aplicacionesusers/AddApplicationAdminUser" method="post">
+                                                <input type="hidden" id="Id" name="Id" value="@Model.Id">
+                                                <input type="hidden" value="@item" name="item">
+                                                <input type="submit" value="Activar" class="btn btn-primary btn-sm">
+                                            </form>
+
+                                        }
+
+                                    </td>
+                                </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+</div>

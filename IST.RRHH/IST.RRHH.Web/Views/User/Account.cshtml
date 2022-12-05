@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewBag.Title = "Mi cuenta";
+}
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Administrador de usuarios</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("Index", "Home")">Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a>Usuarios</a>
+            </li>
+            <li class="active breadcrumb-item">
+                <strong>Mi cuenta</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+
+    <div class="wrapper wrapper-content  animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="ibox">
+                    <div class="ibox-content">
+
+
+
+                        <strong>Sistema</strong>
+                        <ul class="list-group clear-list">
+
+                            <li class="list-group-item fist-item">
+                                <span class="float-left"> Perfil  </span>
+                                <select class="form-control">
+                                    <option>Perfil ..</option>
+                                    <option>Perfil ..</option>
+                                </select>
+                            </li>
+                            <li class="list-group-item ">
+                                <label>   <input type="checkbox" class="i-checks"> Activo</label>
+                                <label>   <input type="checkbox" class="i-checks"> Necesita Autorización</label>
+                            </li>
+
+
+                        </ul>
+
+                        <strong>Datos</strong>
+
+                        <ul class="list-group clear-list">
+                            <li class="list-group-item fist-item">
+                                <span class="float-left"> Email  </span>
+                                <input type="text" class="form-control" />
+                            </li>
+                            <li class="list-group-item ">
+                                <span class="float-left"> Rut  </span>
+                                <input type="text" class="form-control" />
+                            </li>
+                            <li class="list-group-item ">
+                                <span class="float-left"> Nombres  </span>
+                                <input type="text" class="form-control" />
+                            </li>
+                            <li class="list-group-item ">
+                                <span class="float-left"> Apellido Paterno  </span>
+                                <input type="text" class="form-control" />
+                            </li>
+
+                            <li class="list-group-item ">
+                                <span class="float-left"> Apellido Materno  </span>
+                                <input type="text" class="form-control" />
+                            </li>
+
+                            <li class="list-group-item ">
+                                <span class="float-left"> Cliente  </span>
+                                <select class="form-control">
+                                    <option>Cliente</option>
+                                </select>
+                            </li>
+
+                            <li class="list-group-item ">
+                                <table class="table table-responsive">
+                                    <tr>
+                                        <td style="width:30%">
+
+                                            <strong>Faenas</strong>
+                                            <ul class="list-group clear-list">
+
+                                                <li class="list-group-item ">
+                                                    <button type="button" class="btn btn-default btn-sm ">
+                                                        <i class="fa fa-save"></i>Agregar
+                                                    </button>
+                                                </li>
+
+                                            </ul>
+                                        </td>
+
+                                        <td style="width:30%">
+
+                                            <strong>Contrato</strong>
+                                            <ul class="list-group clear-list">
+
+
+                                                <li class="list-group-item ">
+                                                    <button type="button" class="btn btn-default btn-sm">
+                                                        <i class="fa fa-save"></i>Agregar
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </td>
+
+                                        <td style="width:30%">
+
+                                            <strong>Centro de Almacenes</strong>
+                                            <ul class="list-group clear-list">
+
+                                                <li class="list-group-item ">
+                                                    <button type="button" class="btn btn-default btn-sm">
+                                                        <i class="fa fa-save"></i>Agregar
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </td>
+
+                                    </tr>
+                                </table>
+
+
+
+                            </li>
+
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section Styles {
+
+    <link href="~/lib/iCheck/custom.css" rel="stylesheet" />
+}
+
+@section Scripts {
+
+    <script src="~/lib/iCheck/icheck.min.js"></script>
+
+    <script type="text/javascript">
+        $(document.body).on("click", ".client-link", function (e) {
+            e.preventDefault()
+            $(".selected .tab-pane").removeClass('active');
+            $($(this).attr('href')).addClass("active");
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+        });</script>
+
+}

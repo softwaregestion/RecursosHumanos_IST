@@ -1,0 +1,9 @@
+﻿ 
+
+    body .vertical-menu {
+        background: #d1278c !important;
+    }
+
+    body[data-sidebar=dark] #sidebar-menu ul li a {
+        color: white !important;
+    }

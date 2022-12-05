@@ -1,0 +1,436 @@
+﻿@model IST.RRHH.Web.Models.UserIndexModel
+@{
+    ViewBag.Title = "Autorización de usuarios";
+}
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Aprobación de usuarios nuevos</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("Index", "Home")">Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a>Usuarios</a>
+            </li>
+            <li class="active breadcrumb-item">
+                <strong>Aprobación de usuarios nuevos</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="ibox">
+                <div class="ibox-content">
+
+                    <h2>Usuarios</h2>
+                    <p>
+                        Usuarios pendiente de autorizar el acceso al sistema
+                    </p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Buscar Usuario... " class="input form-control btn-search">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn btn-primary btnBuscar"> <i class="fa fa-search"></i> Buscar</button>
+                        </span>
+                    </div>
+                    <div class="clients-list">
+
+
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="">
+                                    <div class="table-responsive">
+                                        @using (Html.BeginForm("AuthorizeList", "User", FormMethod.Post))
+                                        {
+
+                                            <button type="button" class="btn btn-danger btn-list" data-info="Rechazo">
+                                                <i class="fa fa-warning"></i> Rechazo
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-list" data-info="Autorizo">
+                                                <i class="fa fa-save"></i>Autorizo
+                                            </button>
+
+                                            <input type="hidden" value="" name="jsonListadoAutorizacion" id="jsonListadoAutorizacion" />
+                                            <button type="submit" name="btnPost" value="Rechazo" class="hide" id="Rechazo"></button>
+                                            <button type="submit" name="btnPost" value="Autorizo" class="hide" id="Autorizo"></button>
+
+                                        }
+                                        <table class="table table-striped table-hover">
+                                            <tbody>
+                                                @if (Model.Items != null && Model.Items.Count > 0)
+                                                {
+                                                    foreach (var item in Model.Items)
+                                                    {
+                                                        var activo = "";
+                                                        if (Model.UserId == item.UserId)
+                                                        {
+                                                            activo = "active";
+                                                        }
+
+                                                        <tr class="form-group row @activo rowUser">
+                                                            <td class="client-avatar text-center col-md-1">
+                                                                <input type="checkbox" class="i-checks checkUsuario" data-id="@item.UserId">
+                                                            </td>
+                                                            <td class="text-center User-@item.UserId  ReadUserData col-md-4" data-id="@item.UserId" style="width:250px">
+
+                                                                <span class="font-weight-bold"><i class="fa fa-user"></i></span>
+                                                                <br />
+                                                                <a href="#" class="client-link ReadUserData  " data-id="@item.UserId">
+                                                                    @item.Nombres
+                                                                </a>
+                                                                <br />
+                                                                @*<span class="label label-primary">@item.RolSSO</span>*@
+
+
+                                                            </td>
+                                                            <td class="ReadUserData col-md-7" data-id="@item.UserId" style="width:250px">
+                                                                <ul>
+                                                                    <li title="Email">  <i class="fa fa-envelope"> </i> @item.Email</li>
+                                                                    <li title="Fecha solicitante"> <i class="fa fa-calendar"> </i> @item.Fecha</li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <tr class="col-md-12 ">
+                                                        <td> Sin registros para la consulta.</td>
+                                                    </tr>
+                                                }
+
+
+
+
+                                            </tbody>
+                                        </table>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="ibox selected">
+
+                <div class="ibox-content">
+                    <div class="tab-content">
+                        <div id="contact-1" class="tab-pane ">
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.HiddenFor(c => c.UserId)
+
+                                <div class="row m-b-lg">
+                                    <div class="col-lg-4 text-center">
+                                        <h2 id="jsonNombre"> [nombre]</h2>
+
+                                        <div class="m-b-sm" style="font-size:18px">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <strong>
+                                            Configuración:
+                                        </strong>
+                                        <p>
+                                            Manten la información actualizada de tus clientes
+                                        </p>
+                                        <button type="submit" name="btnPost" value="Rechazo" class="btn btn-danger btn-block">
+                                            <i class="fa fa-remove"></i> Rechazo
+                                        </button>
+                                        <button type="submit" name="btnPost" value="Autorizo" class="btn btn-primary btn-block">
+                                            <i class="fa fa-check"></i> Autorizo
+                                        </button>
+                                        @*<button type="submit" name="btnPost" value="Grabar" class="btn btn-success btn-block">
+                                                <i class="fa fa-save"></i> Grabar
+                                            </button>*@
+                                    </div>
+                                </div>
+                                <div class="client-detail" style="height:900px">
+                                    <div style="overflow-x:auto">
+
+                                        <strong>Sistema</strong>
+                                        <ul class="list-group clear-list">
+
+                                            <li class="list-group-item fist-item">
+                                                <span class="float-left"> Perfil  </span>
+
+                                                @{
+
+                                                    var data = new SelectList(Model.ddlRoles, "Text", "Text");
+
+
+                                                }
+
+                                                @*@Html.DropDownListFor(c => c.RolSSO, data, new { @class = "form-control" })*@
+
+                                            </li>
+                                            <li class="list-group-item ">
+                                                <label>   @Html.CheckBoxFor(c => c.Activo, new { @class = "i-checks", @disabled = "disabled" }) Activo</label>
+                                            </li>
+                                        </ul>
+
+                                        <strong>Datos</strong>
+
+                                        <ul class="list-group clear-list">
+                                            <li class="list-group-item fist-item">
+                                                <span class="float-left"> Email  </span>
+
+                                                @Html.TextBoxFor(c => c.Email, new { @class = "form-control", @disabled = "disabled" })
+
+                                            </li>
+                                            <li class="list-group-item ">
+                                                <span class="float-left"> Rut  </span>
+                                                @Html.TextBoxFor(c => c.Rut, new { @class = "form-control" })
+                                            </li>
+                                            <li class="list-group-item ">
+                                                <span class="float-left"> Nombres  </span>
+                                                @Html.TextBoxFor(c => c.Nombres, new { @class = "form-control" })
+                                            </li>
+                                            <li class="list-group-item ">
+                                                <span class="float-left"> Apellido Paterno  </span>
+                                                @Html.TextBoxFor(c => c.ApellidoPaterno, new { @class = "form-control" })
+                                            </li>
+
+                                            <li class="list-group-item ">
+                                                <span class="float-left"> Apellido Materno  </span>
+                                                @Html.TextBoxFor(c => c.ApellidoMaterno, new { @class = "form-control" })
+                                            </li>
+
+
+
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div id="contact-2" class="tab-pane">
+
+                        </div>
+                        <div id="contact-3" class="tab-pane">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-background"></div>
+<div id="modal-content">
+    <div class="form-inline">
+        <button id="modal-close" class="btn btn-success" type="button"><i class="fa fa-window-close"></i></button>
+    </div>
+    <iframe id="viewContent" src="" width="100%" height="90%"></iframe>
+</div>
+
+@section Styles {
+    <link href="~/lib/iCheck/custom.css" rel="stylesheet" />
+    <link href="~/lib/sweetalert/dist/sweetalert.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/lib/iCheck/icheck.min.js"></script>
+    <script src="~/lib/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+
+        var controller = '@ViewContext.RouteData.Values["controller"].ToString()';
+
+        var User = {};
+        var UserId = '@Model.UserId';
+
+        var topscroll = 0;
+
+        $(document.body).on("click", ".client-link", function (e) {
+            e.preventDefault()
+            $(".selected .tab-pane").removeClass('active');
+            $($(this).attr('href')).addClass("active");
+        });
+
+        $(document).ready(function () {
+
+            $('.btn-search').keyup(function () {
+
+                var searchText = $(this).val().toLowerCase();
+
+                $('.rowUser').each(function () {
+
+                    var currentLiText = $(this).text().toLowerCase(),
+                        showCurrentLi = currentLiText.indexOf(searchText) !== -1;
+
+                    $(this).toggle(showCurrentLi);
+
+                });
+            });
+
+            $(".btnBuscar").click(function () {
+
+                var text = $('.btn-search').val()
+                if (text == '') {
+                    swal({
+                        title: "Aviso",
+                        text: "Para buscar debe ingresar un registro"
+                    });
+                }
+                else {
+
+                    $('.btn-search').keyup();
+                }
+
+            });
+
+            $(".ReadUserData").click(function(){
+
+                var user = $(this).data("id");
+                llamarApiUsuario(user);
+
+            });
+
+
+            $(".btn-list").click(function () {
+
+                var infobtn = $(this).data("info")
+                var json = [];
+
+                $(".checkUsuario").each(function () {
+                    var obj = $(this).data("id")
+                    if ($(this).prop("checked")) {
+                        json.push(obj)
+                    }
+                });
+
+                if (json.length == 0) {
+                    swal({
+                        title: "aviso",
+                        text: "Debe seleccionar al menos un usuario para continuar"});
+                }
+                else {
+                    $("#jsonListadoAutorizacion").val(JSON.stringify(json));
+                    $("#" + infobtn).click();
+
+                }
+
+            });
+
+            $(".modal-launcher, #modal-background, #modal-close").click(function () {
+
+
+                    var url = $(this).data("url");
+                    var iframe = document.getElementById("viewContent");
+
+                    if ($('#modal-content:visible').length == 0) {
+                        iframe.src = url + "/" + User.UserId + "?" + (new Date().getTime());
+                        topscroll = $(window).scrollTop();
+                        $(window).scrollTop(0);
+                    }
+                    else {
+                        iframe.src = "";
+                        llamarApiUsuario(User.UserId);
+                        $(window).scrollTop(topscroll);
+                    }
+
+                    $("#modal-content,#modal-background").toggle();
+
+
+
+            });
+
+            //Id ya buscado
+            if (UserId != "") {
+                $(".User-" + UserId).click();
+            }
+        });
+
+        //$('.i-checks').iCheck({
+        //    checkboxClass: 'icheckbox_square-green',
+        //    radioClass: 'iradio_square-green',
+        //});
+
+
+
+        function CargarLista(ul, data) {
+
+            var obj = $(ul);
+            obj.find('li').remove().end();
+            for (var i = 0; i < data.length; i++) {
+
+                var elementData = data[i];
+                obj.append('<li class="list-group-item fist-item">' + elementData.Text + '</li>')
+
+            }
+        }
+
+        function CargarPersona(object)
+        {
+
+            User = object;
+            /*****************************************************************/
+
+            $("#jsonNombre").html(object.Nombres + " " + object.ApellidoPaterno + " " + object.ApellidoMaterno);
+
+            $("#UserId").val(object.UserId);
+            $("#Nombres").val(object.Nombres);
+            $("#ApellidoPaterno").val(object.ApellidoPaterno);
+            $("#ApellidoMaterno").val(object.ApellidoMaterno);
+            $("#Rut").val(object.Rut);
+            $("#Email").val(object.Email);
+
+            $('#Activo').prop('checked', object.Activo);
+
+
+
+
+            $("#RolSSO").val(object.RolSSO);
+
+
+
+            $('#Activo').attr('disabled', 'disabled');
+
+
+
+            $("#contact-1").addClass("active")
+
+        }
+
+        function llamarApiUsuario(user) {
+
+            if (user != null) {
+                var json = {};
+                json.UserId = user;
+
+                $.ajax
+                    ({
+                        type: "POST",
+                        url: '/' + controller + "/userdata",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        dataType: 'json',
+                        async: true,
+                        data: json,
+                        success: function (obj) {
+                            CargarPersona(obj)
+                        }
+                    })
+            }
+        }
+
+    </script>
+
+}

@@ -1,0 +1,220 @@
+﻿@model IST.RRHH.Web.Models.UserIndexModel
+@{
+    ViewBag.Title = "Create New";
+    ViewBag.pTitle = "Create New";
+    ViewBag.pageTitle = "Projects";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+}
+
+@section styles{
+
+    <link href="~/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+    <!-- dropzone css -->
+    <link href="~/assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Nuevo Trabajador</h4>
+                <form>
+                </form>
+                 
+                @using (Html.BeginForm("Create", "User", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+                {
+
+                    <div class="mailbox">
+                        <!-- BEGIN mailbox-toolbar -->
+
+                        <div class="mailbox-toolbar">
+                            <div class="mailbox-toolbar-item"><span class="mailbox-toolbar-text">Nuevo Trabajador/ra </span></div>
+                            <div class="mailbox-toolbar-item">
+
+                            </div>
+                        </div>
+                        <!-- END mailbox-toolbar -->
+                        <!-- BEGIN mailbox-body -->
+                        <div class="mailbox-body">
+                            <div class="mailbox-content">
+                                <!-- BEGIN scrollbar -->
+                                <div data-scrollbar="true" data-height="100%" data-skip-mobile="true">
+                                    <div class="mailbox-form">
+
+                                        <div class="row mb-4">
+                                            <label for="projectname" class="col-form-label col-lg-2">Email</label>
+                                            <div class="col-lg-10">
+
+                                                @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-4">
+                                            <label for="projectname" class="col-form-label col-lg-2">Cargo</label>
+                                            <div class="col-lg-10">
+
+
+                                                @{var data = new SelectList(Model.ddlCargo, "Value", "Text");}
+
+                                                @Html.DropDownListFor(c => c.Cargo, data, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <label for="projectdesc" class="col-form-label col-lg-2">Rut</label>
+                                            <div class="col-lg-10">
+                                                @Html.TextBoxFor(c => c.Rut, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-4">
+                                            <label for="projectdesc" class="col-form-label col-lg-2">Nombres</label>
+                                            <div class="col-lg-10">
+
+
+                                                @Html.TextBoxFor(c => c.Nombres, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mb-4">
+                                            <label for="projectdesc" class="col-form-label col-lg-2">Apellido Paterno</label>
+                                            <div class="col-lg-10">
+
+
+                                                @Html.TextBoxFor(c => c.ApellidoPaterno, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-4">
+                                            <label for="projectdesc" class="col-form-label col-lg-2">Apellido Materno</label>
+                                            <div class="col-lg-10">
+
+
+                                                @Html.TextBoxFor(c => c.ApellidoMaterno, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="example-date-input" class="col-md-2 col-form-label">Fecha Cumpleaños</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control fecha" type="text" value="@Model.Fecha" id="Fecha" name="Fecha" > 
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-4">
+                                            <label for="projectdesc" class="col-form-label col-lg-2">Telefono</label>
+                                            <div class="col-lg-10">
+
+
+                                                @Html.TextBoxFor(c => c.Telefono, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                         <div class="row mb-4">
+                                            <label for="projectdesc" class="col-form-label col-lg-2">Celular</label>
+                                            <div class="col-lg-10">
+
+
+                                                @Html.TextBoxFor(c => c.Celular, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <label for="projectdesc" class="col-form-label col-lg-2">Dirección</label>
+                                            <div class="col-lg-10">
+
+
+                                                @Html.TextBoxFor(c => c.Direccion, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                                <!-- END scrollbar -->
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="row mb-4">
+                                <label class="col-form-label col-lg-2">Adjuntar Contrato</label>
+                                <div class="col-lg-10">
+                                    <div class="dropzone">
+                                        <div class="fallback">
+                                            <input  name="filescontratos" type="file" multiple />
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <label class="col-form-label col-lg-2">Adjuntar Foto</label>
+                                <div class="col-lg-10">
+                                    <div class="dropzone">
+                                        <div class="fallback">
+                                            <input   name="filesfoto" type="file" multiple />
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <label class="col-form-label col-lg-2">Adjuntar Firma</label>
+                                <div class="col-lg-10">
+                                    <div class="dropzone">
+                                        <div class="fallback">
+                                            <input  name="filesfirmas" type="file" multiple />
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-end">
+                            <div class="col-lg-10">
+                                <button type="submit" class="btn btn-primary">Grabar</button>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+                }
+            </div>
+    </div>
+</div>
+<!-- end row -->
+<!-- JAVASCRIPT -->
+<script src="~/assets/libs/jquery/jquery.min.js"></script>
+<script src="~/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/libs/metismenu/metisMenu.min.js"></script>
+<script src="~/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="~/assets/libs/node-waves/waves.min.js"></script>
+
+
+<!-- bootstrap datepicker -->
+<script src="~/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+<!-- dropzone plugin -->
+<script src="~/assets/libs/dropzone/min/dropzone.min.js"></script>
+
+<script src="~/assets/js/app.js"></script>
+<script>
+
+    $('.fecha').datepicker({
+       todayBtn: "linked",
+       language: "es",
+       autoclose: true,
+       todayHighlight: true,
+       format: 'dd/mm/yyyy' 
+   });
+
+</script>
+
+
+

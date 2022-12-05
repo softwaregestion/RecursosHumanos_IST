@@ -1,0 +1,83 @@
+@model IST.RRHH.Web.Models.UsuarioTipoNotificacion.IndexModel
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Lista de UsuarioTipoNotificacion</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("Index", "UsuarioTipoNotificacion")">UsuarioTipoNotificacion</a>
+            </li>
+            <li class="active breadcrumb-item">
+                <strong>Lista de UsuarioTipoNotificacion</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInUp">
+
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>Todas la data.</h5>
+            <div class="ibox-tools">
+               
+
+            </div>
+        </div>
+        <div class="ibox-content">
+            <div class="row m-b-sm m-t-sm hide" style="display:none">
+                <div class="col-md-1">
+                    <button type="button" id="loading-example-btn" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> Actualizar</button>
+                </div>
+                <div class="col-md-11">
+                    <div class="input-group">
+                        <input type="text" placeholder="Search" class="form-control-sm form-control"> <span class="input-group-btn">
+
+                            <button type="button" class="btn btn-sm btn-primary"> Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-list">
+
+                <table class="table table-hover">
+                    <tbody>
+
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>								
+ 
+                                <td class="project-title">
+                                   @Html.Raw(item.UserId)
+                                </td>									
+		 
+                                <td class="project-title">
+                                   @Html.Raw(item.TipoNotificacionId)
+                                </td>									
+		 
+                                <td class="project-title">
+                                   @Html.Raw(item.UltimaModificacion)
+                                </td>									
+		 
+                                <td class="project-title">
+                                   @Html.Raw(item.UsuarioModificacion)
+                                </td>									
+										<td class="project-actions">                                    
+                                    
+                                    <a href="@Url.Action("Details", " UsuarioTipoNotificacion", new { Id = 0 })" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> Detalle </a>
+									<a href="@Url.Action("Delete", " UsuarioTipoNotificacion", new { Id = 0 })" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> Borrar </a>
+									<a href="@Url.Action("Edits", " UsuarioTipoNotificacion", new { Id = 0 })" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> Editar </a>
+                                </td>
+                            </tr>
+                        }
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+ 

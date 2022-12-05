@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleInjector.Integration.AspNetCore.Mvc</name>
+    </assembly>
+    <members>
+        <member name="T:SimpleInjector.SimpleInjectorAspNetCoreBuilderMvcExtensions">
+            <summary>
+            Extension methods for <see cref="T:SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder"/> that allow integrating
+            Simple Injector with ASP.NET Core MVC page models and tag helpers.
+            </summary>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreBuilderMvcExtensions.AddPageModelActivation(SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder)">
+            <summary>
+            Registers all application's page models in Simple Injector and instructs ASP.NET Core to let
+            Simple Injector create those page models.
+            </summary>
+            <param name="builder">The builder instance.</param>
+            <returns>The supplied <paramref name="builder"/> instance.</returns>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreBuilderMvcExtensions.AddTagHelperActivation(SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder,System.Predicate{System.Type})">
+            <summary>
+            Registers the application's tag helpers that in Simple Injector and instructs ASP.NET Core to let
+            Simple Injector create those tag helpers.
+            </summary>
+            <param name="builder">The builder instance.</param>
+            <param name="applicationTypeSelector">An optional predicate that instructs Simple Injector which
+            tag helpers to register and construct and which tag helpers to be instructed by ASP.NET Core
+            itself. When ommitted, Simple Injector will skip all tag helpers in the 'Microsoft.' namespace.
+            </param>
+            <returns>The supplied <paramref name="builder"/> instance.</returns>
+        </member>
+        <member name="T:SimpleInjector.SimpleInjectorAspNetCoreMvcIntegrationExtensions">
+            <summary>
+            Extension methods for integrating Simple Injector with ASP.NET Core MVC applications.
+            </summary>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreMvcIntegrationExtensions.AddSimpleInjectorTagHelperActivation(Microsoft.Extensions.DependencyInjection.IServiceCollection,SimpleInjector.Container,System.Predicate{System.Type})">
+            <summary>
+            Registers a custom <see cref="T:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorTagHelperActivator"/> that allows the resolval of
+            tag helpers using the <paramref name="container"/>. In case no <paramref name="applicationTypeSelector"/>
+            is supplied, the custom tag helper activator will forward the creation of tag helpers that are not
+            located in a "Microsoft*" namespace to Simple Injector.
+            </summary>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> the custom tag helper activator should
+            be registered in.</param>
+            <param name="container">The container tag helpers should be resolved from.</param>
+            <param name="applicationTypeSelector">An optional predicate that allows specifying which types
+            should be resolved by Simple Injector (true) and which should be resolved by the framework (false).
+            When not specified, all tag helpers whose namespace does not start with "Microsoft" will be forwarded
+            to the Simple Injector container.</param>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreMvcIntegrationExtensions.RegisterPageModels(SimpleInjector.Container,Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Registers the ASP.NET Core MVC controller instances that are defined in the application through
+            the <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager"/>.
+            </summary>
+            <param name="container">The container the controllers should be registered in.</param>
+            <param name="applicationBuilder">The ASP.NET object that holds the application's configuration.
+            </param>
+        </member>
+        <member name="T:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorPageModelActivatorProvider">
+            <summary>
+            Provides methods to create a Razor Page model using Simple Injector.
+            </summary>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorPageModelActivatorProvider.#ctor(SimpleInjector.Container)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorPageModelActivatorProvider"/> class.
+            </summary>
+            <param name="container">The container instance that will be used to create page model instances.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="container"/> is null.</exception>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorPageModelActivatorProvider.CreateActivator(Microsoft.AspNetCore.Mvc.RazorPages.CompiledPageActionDescriptor)">
+            <summary>
+            Creates a Razor Page model activator.
+            </summary>
+            <param name="descriptor">The <see cref="T:Microsoft.AspNetCore.Mvc.RazorPages.CompiledPageActionDescriptor"/>.</param>
+            <returns>The delegate used to activate the page model.</returns>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorPageModelActivatorProvider.CreateReleaser(Microsoft.AspNetCore.Mvc.RazorPages.CompiledPageActionDescriptor)">
+            <summary>
+            Releases a Razor Page model.
+            </summary>
+            <param name="descriptor">The <see cref="T:Microsoft.AspNetCore.Mvc.RazorPages.CompiledPageActionDescriptor"/>.</param>
+            <returns>The delegate used to dispose the activated Razor Page model or null.</returns>
+        </member>
+        <member name="T:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorTagHelperActivator">
+            <summary>Tag Helper Activator for Simple Injector.</summary>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorTagHelperActivator.#ctor(SimpleInjector.Container)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorTagHelperActivator"/> class.
+            </summary>
+            <param name="container">The container instance.</param>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorTagHelperActivator.#ctor(SimpleInjector.Container,System.Predicate{System.Type},Microsoft.AspNetCore.Mvc.Razor.ITagHelperActivator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorTagHelperActivator"/> class.
+            </summary>
+            <param name="container">The container instance.</param>
+            <param name="tagHelperSelector">The predicate that determines which tag helpers should be created
+            by the supplied <paramref name="container"/> (when the predicate returns true) or using the
+            supplied <paramref name="frameworkTagHelperActivator"/> (when the predicate returns false).</param>
+            <param name="frameworkTagHelperActivator">The framework's tag helper activator.</param>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorTagHelperActivator.Create``1(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)">
+            <summary>Creates an <see cref="T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper"/>.</summary>
+            <typeparam name="TTagHelper">The <see cref="T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper"/> type.</typeparam>
+            <param name="context">The <see cref="T:Microsoft.AspNetCore.Mvc.Rendering.ViewContext"/> for the executing view.</param>
+            <returns>The tag helper.</returns>
+        </member>
+    </members>
+</doc>

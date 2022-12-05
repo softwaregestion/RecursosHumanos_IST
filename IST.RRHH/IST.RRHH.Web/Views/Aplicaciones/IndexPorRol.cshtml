@@ -1,0 +1,79 @@
+﻿@model IST.RRHH.Web.Models.AplicacionesModel
+
+@{
+    ViewBag.Title = "Users Grid";
+    ViewBag.pTitle = "Users Grid";
+    ViewBag.pageTitle = "Contacts";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @foreach (var item in Model.Aplicaciones)
+    {
+        if (item.ClientName == null)
+        {
+            continue;
+        }
+
+        if (item.ClientUri == null)
+        {
+            continue;
+        }
+
+        if (item.ClientName.ToUpper().IndexOf("EXTERNO") > 0)
+        {
+            continue;
+        }
+
+        if (item.ClientUri.ToUpper().IndexOf("LOCALHOST") > 0)
+        {
+            continue;
+        }
+
+        <div class="col-xl-3 col-sm-6">
+
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="avatar-sm mx-auto mb-4">
+                        <span class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-16">
+                            App
+                        </span>
+                    </div>
+                    <h5 class="font-size-15 mb-1"><a href="@item.ClientUri" target="_blank" class="text-dark">@item.ClientId.ToUpper()</a></h5>
+                    <p class="text-muted">Online: @item.Created</p>
+
+                    <div>
+                        <a href="~/Client/admin?ClientId=@item.Id" class="badge bg-primary font-size-11 m-1">Ver más</a>
+
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top">
+                    <div class="contact-links d-flex font-size-15">
+                        <div class="flex-fill">
+                            <a href="~/AplicacionesRoles/IndexEditar/@item.Id"><i class="bx bx-file"></i> @item.CuantosRoles Rol/es</a>
+                        </div>                      
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+     
+</div>
+<!-- end row -->
+ 
+ 
+<!-- end row -->
+<!-- JAVASCRIPT -->
+<script src="~/assets/libs/jquery/jquery.min.js"></script>
+<script src="~/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/libs/metismenu/metisMenu.min.js"></script>
+<script src="~/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="~/assets/libs/node-waves/waves.min.js"></script>
+
+
+<!-- App js -->
+<script src="~/assets/js/app.js"></script>
+
+
+

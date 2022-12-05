@@ -1,0 +1,104 @@
+﻿@model IST.RRHH.Web.Models.UserIndexModel
+@{
+    ViewBag.Title = "Create New";
+    ViewBag.pTitle = "Create New";
+    ViewBag.pageTitle = "Projects";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+}
+
+@section styles{
+
+    <link href="~/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+    <!-- dropzone css -->
+    <link href="~/assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Actualizar Archivos adjuntos de usuario</h4>
+
+
+                @using (Html.BeginForm("Adjuntar", "User", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+                {
+                   
+            <div class="mailbox">
+                <!-- BEGIN mailbox-toolbar -->
+                @Html.HiddenFor(c => c.UserId)
+
+                <div class="row mb-4">
+                    <div class="row mb-4">
+                        <label class="col-form-label col-lg-2">Actualizar Contrato</label>
+                        <div class="col-lg-10">
+                            <div class="dropzone">
+                                <div class="fallback">
+                                    <input name="filescontratos" type="file" multiple />
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <label class="col-form-label col-lg-2">Actualizar Foto</label>
+                        <div class="col-lg-10">
+                            <div class="dropzone">
+                                <div class="fallback">
+                                    <input name="filesfoto" type="file" multiple />
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <label class="col-form-label col-lg-2">Actualizar Firma</label>
+                        <div class="col-lg-10">
+                            <div class="dropzone">
+                                <div class="fallback">
+                                    <input name="filesfirmas" type="file" multiple />
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-end">
+                    <div class="col-lg-10">
+                        <button type="submit" class="btn btn-primary">Cargar</button>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+    }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end row -->
+<!-- JAVASCRIPT -->
+<script src="~/assets/libs/jquery/jquery.min.js"></script>
+<script src="~/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/libs/metismenu/metisMenu.min.js"></script>
+<script src="~/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="~/assets/libs/node-waves/waves.min.js"></script>
+
+
+<!-- bootstrap datepicker -->
+<script src="~/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+<!-- dropzone plugin -->
+<script src="~/assets/libs/dropzone/min/dropzone.min.js"></script>
+
+<script src="~/assets/js/app.js"></script>
+
+
+

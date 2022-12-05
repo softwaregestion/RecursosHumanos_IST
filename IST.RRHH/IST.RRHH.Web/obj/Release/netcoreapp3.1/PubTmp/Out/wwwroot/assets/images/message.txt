@@ -1,0 +1,76 @@
+ services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = SSOConfig.Authority;
+                options.Audience = "api1";
+                options.RequireHttpsMetadata = false;
+            }).AddCookie("Cookies", option =>
+            {
+                option.Cookie.Name = SSOConfig.CookieName;
+                option.Cookie.IsEssential = true;
+                option.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+            }).AddOpenIdConnect(options =>
+            {
+
+                options.Authority = SSOConfig.Authority;
+                options.ClientId = SSOConfig.ClientId;
+                options.ClientSecret = SSOConfig.Secret;
+                options.SignedOutRedirectUri = SSOConfig.PostLogoutRedirectUri;
+                options.AccessDeniedPath = "/";
+
+                options.ResponseMode = "form_post";
+                //options.SignedOutRedirectUri = SSOConfig.RedirectUri;
+                options.ResponseType = "code id_token";
+                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.SignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.GetClaimsFromUserInfoEndpoint = true;
+                options.RequireHttpsMetadata = false;
+                options.SaveTokens = true;
+
+                options.Scope.Clear();
+                options.Scope.Add("openid");
+                options.Scope.Add("profile");
+                options.Scope.Add("email");
+                options.Scope.Add("offline_access");
+                options.Scope.Add("api2.full_access");
+                options.Scope.Add("api1");
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = JwtClaimTypes.Name,
+                    RoleClaimType = JwtClaimTypes.Role,
+                };
+
+                options.Events = new OpenIdConnectEvents
+                {
+
+                    OnTicketReceived = async ctx =>
+                    {
+                        var token = ctx.Properties.GetTokens().FirstOrDefault().Value;
+                        var roles = await GetUserRolesAsync(token);
+
+                        var claims = new List<Claim>();
+
+                        foreach (var item in roles)
+                        {
+                            claims.Add(new Claim(ClaimTypes.Role, item));
+                        }
+
+                        var appIdentity = new ClaimsIdentity(claims);
+
+                        ctx.Principal.AddIdentity(appIdentity);
+                    },
+
+                    //OnRedirectToIdentityProviderForSignOut = context =>
+                    //{
+                    //    //context.Response.Redirect($"https://{SSOConfig.Authority}/logout?client_id={SSOConfig.ClientId}&returnTo={context.Request.Scheme}://{context.Request.Host}/");
+                    //    context.HandleResponse();
+
+                    //    return Task.FromResult(0);
+                    //}
+                };
+
+            });

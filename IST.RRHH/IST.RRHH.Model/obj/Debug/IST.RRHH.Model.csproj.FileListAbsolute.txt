@@ -1,0 +1,12 @@
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Model\bin\Debug\IST.RRHH.Model.dll.config
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Model\bin\Debug\IST.RRHH.Model.dll
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Model\bin\Debug\IST.RRHH.Model.pdb
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Model\bin\Debug\EntityFramework.dll
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Model\bin\Debug\EntityFramework.xml
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Model\obj\Debug\IST.RRHH.Model.csproj.AssemblyReference.cache
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Model\obj\Debug\IST.RRHH.Model.csproj.CoreCompileInputs.cache
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Model\obj\Debug\IST.RRHH.Model.csproj.CopyComplete
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Model\obj\Debug\IST.RRHH.Model.dll
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Model\obj\Debug\IST.RRHH.Model.pdb

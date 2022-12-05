@@ -1,0 +1,234 @@
+﻿
+@{
+    ViewBag.Title = "Data Tables";
+    ViewBag.pTitle = "Data Tables";
+    ViewBag.pageTitle = "Tables";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+}
+@model IST.RRHH.Web.Models.AplicacionesModel
+
+
+
+@section styles{
+    <!-- DataTables -->
+    <link href="~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="~/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Log</h4>
+                <p class="card-title-desc">
+
+                </p>
+
+                <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                Fecha
+                            </th> 
+                            <th>
+                                Mensaje
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*@foreach (var item in Model.Log.OrderByDescending(c => c.Fecha))
+                        {
+                            <tr>
+                                <td>
+                                    @item.Fecha
+                                </td>
+                                <td>
+                                    @item.Nombre
+                                </td> 
+                            </tr>
+                        }*@
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->
+ 
+
+@section Scripts {
+<script src="~/lib/iCheck/icheck.min.js"></script>
+<script src="~/lib/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+
+    var controller = '@ViewContext.RouteData.Values["controller"].ToString()';
+
+
+    var User = {};
+    
+    var topscroll = 0;
+     
+
+    
+
+
+
+    $(document).ready(function () {
+
+        $("#modal-content,#modal-background").hide();
+        //$('.btn-search').keyup(function () {
+
+        //    var searchText = $(this).val().toLowerCase();
+
+        //    $('.rowUser').each(function () {
+
+        //        var currentLiText = $(this).text().toLowerCase(),
+        //            showCurrentLi = currentLiText.indexOf(searchText) !== -1;
+
+        //        $(this).toggle(showCurrentLi);
+
+        //    });
+        //});
+
+      
+
+
+
+
+        $(".modal-launcher, #modal-background, #modal-close").click(function () {
+
+
+            var user = $(this).data("user");
+            var url = $(this).data("url");
+            var iframe = document.getElementById("viewContent");
+
+            if ($('#modal-content:visible').length == 0) {
+                iframe.src = url + "/" + user + "?" + (new Date().getTime());
+                topscroll = $(window).scrollTop();
+                $(window).scrollTop(0);
+            }
+            else {
+                iframe.src = "";
+                llamarApiUsuario(User.UserId);
+                $(window).scrollTop(topscroll);
+            }
+
+            $("#modal-content,#modal-background").toggle();
+
+
+
+
+        });
+
+       
+    });
+
+
+
+
+    function CargarPersona(object) {
+
+        User = object;
+        /*****************************************************************/
+
+        $("#jsonNombre").html(object.nombres + " " + object.apellidoPaterno + " " + object.apellidoMaterno);
+
+        $("#UserId").val(object.userId);
+        $("#Nombres").val(object.nombres);
+        $("#ApellidoPaterno").val(object.apellidoPaterno);
+        $("#ApellidoMaterno").val(object.apellidoMaterno);
+        $("#Rut").val(object.rut);
+        $("#Email").val(object.email);
+
+        $("#Edad").val(object.edad);
+        $("#Telefono").val(object.telefono);
+        $("#Direccion").val(object.direccion);
+
+        $("#Jerarquia").val(object.jerarquia);
+        $("#ClienteId").val(object.clienteId);
+
+
+
+        $('#Activo').prop('checked', object.activo);
+
+        console.log(object);
+
+
+        $("#RolFlexible").val(object.rolFlexible);
+        $("#RolId").val(object.rolFlexible);
+        //console.log(User);
+
+
+        $("#contact-1").addClass("active")
+
+
+    }
+
+    function llamarApiUsuario(user) {
+
+        if (user != null) {
+            var json = {};
+            json.UserId = user;
+
+            $.ajax
+                ({
+                    type: "POST",
+                    url: '@IST.RRHH.Web.AppConfig.UrlWeb' + '/' + controller + "/userdata",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    dataType: 'json',
+                    async: true,
+                    data: json,
+                    success: function (obj) {
+                        CargarPersona(obj)
+                    }
+                })
+        }
+    }
+
+</script>
+
+}
+
+
+<!-- JAVASCRIPT -->
+<script src="~/assets/libs/jquery/jquery.min.js"></script>
+<script src="~/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/libs/metismenu/metisMenu.min.js"></script>
+<script src="~/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="~/assets/libs/node-waves/waves.min.js"></script>
+
+
+<!-- Required datatable js -->
+<script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<!-- Buttons examples -->
+<script src="~/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="~/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+<script src="~/assets/libs/jszip/jszip.min.js"></script>
+<script src="~/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+<script src="~/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<script src="~/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="~/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="~/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+
+<!-- Responsive examples -->
+<script src="~/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="~/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+<!-- Datatable init js -->
+<script src="~/assets/js/pages/datatables.init.js"></script>
+
+<script src="~/assets/js/app.js"></script>
+
+
+

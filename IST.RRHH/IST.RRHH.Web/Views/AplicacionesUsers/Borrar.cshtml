@@ -1,0 +1,91 @@
+﻿@model IST.RRHH.Web.Helpers.ModelUsers
+@{
+    ViewData["Title"] = "Borrar";
+}
+
+<div class="container body-content">
+
+    @if (ViewBag.Error != null)
+    {
+        <h3 class="alert alert-danger">@ViewBag.Error</h3>
+    }
+    @if (ViewBag.Success != null)
+    {
+        <h3 class="alert alert-success">@ViewBag.Success</h3>
+    }
+
+
+
+    <div class="container body-content">
+
+        
+
+        <div class="panel  panel-default " style="padding:20px">
+            
+            <div class="row">
+                <div class="col-md-3">
+                    
+                </div>
+                <div class="col-md-9">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Borrar cuenta</h3>
+                        </div>
+                        <div class="panel-body">
+
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <form method="post" action="~/Aplicacionesusers/Borrar" novalidate="novalidate">
+                                        <input type="hidden" name="Id" id="Id" value="@Model.Id" />
+
+                                        <div class="text-danger validation-summary-valid" data-valmsg-summary="true">
+                                            <ul>
+                                                <li>
+                                                    Esto conllevará a que se elimine el usuario seleccionado permanentemente, ¿desea continuar?
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Email">Correo electrónico</label>
+                                            <input class="form-control" type="email" data-val="true" data-val-email="El campo Correo electrónico no es un e-mail válido." data-val-length="El Correo electrónico debe ser entre 5 y 100 caracteres de largo." data-val-length-max="100" data-val-length-min="5" id="Email" name="Email" value="@Model.Email" disabled="disabled">
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Nombres">Nombres</label>
+                                            <input class="form-control" type="text" data-val="true" data-val-email="El campo Nombres no es  válido." data-val-length="El Nombre debe ser entre 3 y 100 caracteres de largo." data-val-length-max="100" data-val-length-min="3" id="Nombres" name="Nombres" value="@Model.Nombres" disabled="disabled">
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="Nombres" data-valmsg-replace="true"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Apellidos">Apellidos</label>
+                                            <input class="form-control" type="text" data-val="true" data-val-email="El campo Apellidos no es  válido." data-val-length="El Apellidos debe ser entre 3 y 100 caracteres de largo." data-val-length-max="100" data-val-length-min="3" id="Apellidos" name="Apellidos" value="@Model.Apellidos" disabled="disabled">
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="Apellidos" data-valmsg-replace="true"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Rut">Rut</label>
+                                            <input class="form-control" type="text" data-val="true" data-val-email="El campo Rut no es  válido." data-val-length="El Rut debe ser entre 3 y 100 caracteres de largo." data-val-length-max="100" data-val-length-min="3" id="Rut" name="Rut" value="@Model.Rut" disabled="disabled">
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="Rut" data-valmsg-replace="true"></span>
+                                        </div>
+                                        <hr/>
+                                        <button type="submit" class="btn btn-danger">Borrar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+</div>

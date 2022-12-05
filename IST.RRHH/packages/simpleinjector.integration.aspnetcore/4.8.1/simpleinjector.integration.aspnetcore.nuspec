@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>SimpleInjector.Integration.AspNetCore</id>
+    <version>4.8.1</version>
+    <authors>Simple Injector Contributors</authors>
+    <owners>Simple Injector Contributors</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>simpleinjector.png</icon>
+    <projectUrl>https://simpleinjector.org/aspnetcore</projectUrl>
+    <description>Integration library for ASP.NET Core for Simple Injector.</description>
+    <tags>simpleinjector dependency-injection DI ASP.NET ASP.NET Core asp.net-core</tags>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="SimpleInjector.Integration.ServiceCollection" version="4.8.1" exclude="Build,Analyzers" />
+        <dependency id="SimpleInjector" version="[4.8.1,5)" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Hosting.Abstractions" version="2.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Http" version="2.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="2.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

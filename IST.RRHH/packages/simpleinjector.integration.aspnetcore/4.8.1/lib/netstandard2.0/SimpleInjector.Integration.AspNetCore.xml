@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleInjector.Integration.AspNetCore</name>
+    </assembly>
+    <members>
+        <member name="T:SimpleInjector.Integration.AspNetCore.AspNetRequestLifestyle">
+             <summary>
+             Defines a lifestyle that caches instances during the execution of a single ASP.NET Request.
+             Unless explicitly stated otherwise, instances created by this lifestyle will be disposed at the end
+             of the request. Do note that this lifestyle requires the
+             <see cref="M:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions.UseSimpleInjectorAspNetRequestScoping(Microsoft.Extensions.DependencyInjection.IServiceCollection,SimpleInjector.Container)">UseSimpleInjectorAspNetRequestScoping.</see>
+             to be registered in the Web API configuration.
+             </summary>
+             <example>
+             The following example shows the usage of the <b>AspNetRequestLifestyle</b> class:
+             <code lang="cs"><![CDATA[
+             var container = new Container();
+             container.Options.DefaultScopedLifestyle = new AspNetRequestLifestyle();
+            
+             container.Register<IUnitOfWork, EntityFrameworkUnitOfWork>(Lifestyle.Scoped);
+             ]]></code>
+             </example>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.AspNetRequestLifestyle.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:SimpleInjector.Integration.AspNetCore.AspNetRequestLifestyle"/> class.
+            The created and cached instance will be disposed when the Web API request ends, and when the
+            created object implements <see cref="T:System.IDisposable"/>.
+            </summary>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.AspNetRequestLifestyle.#ctor(System.Boolean)">
+            <summary>Initializes a new instance of the <see cref="T:SimpleInjector.Integration.AspNetCore.AspNetRequestLifestyle"/> class.</summary>
+            <param name="disposeInstanceWhenScopeEnds">
+            Specifies whether the created and cached instance will be disposed when the Web API request ends,
+            and when the created object implements <see cref="T:System.IDisposable"/>.
+            </param>
+        </member>
+        <member name="T:SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder">
+            <summary>
+            Builder object returned by <see cref="M:SimpleInjector.SimpleInjectorAddOptionsAspNetCoreExtensions.AddAspNetCore(SimpleInjector.Integration.ServiceCollection.SimpleInjectorAddOptions)"/>
+            that allows additional integration options to be applied.
+            </summary>
+        </member>
+        <member name="P:SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder.Services">
+            <summary>
+            Gets the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> that contains the collection of framework components.
+            </summary>
+            <value>The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> instance.</value>
+        </member>
+        <member name="P:SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder.Container">
+            <summary>
+            Gets the <see cref="P:SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder.Container"/> instance used by the application.
+            </summary>
+            <value>The <see cref="P:SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder.Container"/> instance.</value>
+        </member>
+        <member name="T:SimpleInjector.SimpleInjectorAddOptionsAspNetCoreExtensions">
+            <summary>
+            Extensions for configuring Simple Injector with ASP.NET Core using
+            <see cref="T:SimpleInjector.Integration.ServiceCollection.SimpleInjectorAddOptions"/>.
+            </summary>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAddOptionsAspNetCoreExtensions.AddAspNetCore(SimpleInjector.Integration.ServiceCollection.SimpleInjectorAddOptions)">
+            <summary>
+            Adds basic Simple Injector integration for ASP.NET Core and returns a builder object that allow
+            additional integration options to be applied. These basic integrations includes wrapping each web
+            request in an <see cref="T:SimpleInjector.Lifestyles.AsyncScopedLifestyle"/> scope and making the nessesary changes that make
+            it possible for enabling the injection of framework components in Simple Injector-constructed
+            components when 
+            <see cref="M:SimpleInjector.SimpleInjectorServiceCollectionExtensions.UseSimpleInjector(System.IServiceProvider,SimpleInjector.Container)"/>
+            is called.
+            </summary>
+            <param name="options">The options to which the integration should be applied.</param>
+            <returns>A new <see cref="T:SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder"/> instance that allows additional
+            configurations to be made.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="options"/> is null.</exception>
+        </member>
+        <member name="T:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions">
+            <summary>
+            Extension methods for integrating Simple Injector with ASP.NET applications.
+            </summary>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions.UseSimpleInjectorAspNetRequestScoping(Microsoft.AspNetCore.Builder.IApplicationBuilder,SimpleInjector.Container)">
+            <summary>Wraps ASP.NET requests in an <see cref="T:SimpleInjector.Lifestyles.AsyncScopedLifestyle"/>.</summary>
+            <param name="applicationBuilder">The ASP.NET application builder instance that references all
+            framework components.</param>
+            <param name="container">The container.</param>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions.UseSimpleInjectorAspNetRequestScoping(Microsoft.Extensions.DependencyInjection.IServiceCollection,SimpleInjector.Container)">
+            <summary>Wraps ASP.NET requests in an <see cref="T:SimpleInjector.Lifestyles.AsyncScopedLifestyle"/>.</summary>
+            <param name="services">The ASP.NET application builder instance that references all
+            framework components.</param>
+            <param name="container">The container.</param>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions.GetRequestService``1(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Get service of type <typeparamref name="T"/> from the list of request-specific services of the
+            application builder. This preserves the lifestyle of the registered component.
+            </summary>
+            <typeparam name="T">The type of service object to get.</typeparam>
+            <param name="builder">The IApplicationBuilder to retrieve the service object from.</param>
+            <returns>A service object of type T or null if there is no such service.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when the method is called outside the
+            context of a web request.</exception>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions.GetRequiredRequestService``1(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Get service of type <typeparamref name="T"/> from the list of request-specific services of the
+            application builder. This preserves the lifestyle of the registered component.
+            </summary>
+            <typeparam name="T"> The type of service object to get.</typeparam>
+            <param name="builder">The IApplicationBuilder to retrieve the service object from.</param>
+            <returns>A service object of type T.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when the method is called outside the
+            context of a web request, or when there is no service of type <typeparamref name="T"/>.</exception>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions.EnableSimpleInjectorCrossWiring(Microsoft.Extensions.DependencyInjection.IServiceCollection,SimpleInjector.Container)">
+            <summary>
+            Enables ASP.NET Core services to be cross-wired in the Container. This method should be called
+            in the <b>ConfigureServices</b> method of the application's <b>Startup</b> class. When cross-wiring
+            is enabled, individual cross-wire registrations can be made by calling
+            <see cref="M:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions.CrossWire``1(SimpleInjector.Container,Microsoft.AspNetCore.Builder.IApplicationBuilder)"/>.
+            </summary>
+            <param name="services">The ASP.NET application builder instance that references all
+            framework components.</param>
+            <param name="container">The container.</param>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions.CrossWire``1(SimpleInjector.Container,Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Cross-wires an ASP.NET Core or third party service to the container, to allow the service to be
+            injected into components that are built by the container.
+            </summary>
+            <typeparam name="TService">The type of service object to cross-wire.</typeparam>
+            <param name="container">The container.</param>
+            <param name="builder">The IApplicationBuilder to retrieve the service object from.</param>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions.CrossWire(SimpleInjector.Container,System.Type,Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Cross-wires an ASP.NET Core or third party service to the container, to allow the service to be
+            injected into components that are built by the container.
+            </summary>
+            <param name="container">The container.</param>
+            <param name="serviceType">The type of service object to ross-wire.</param>
+            <param name="builder">The IApplicationBuilder to retrieve the service object from.</param>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions.UseMiddleware``1(Microsoft.AspNetCore.Builder.IApplicationBuilder,SimpleInjector.Container)">
+            <summary>
+            Adds a middleware type to the application's request pipeline. The middleware will be resolved from
+            the supplied the Simple Injector <paramref name="container"/>. The middleware will be added to the
+            container for verification.
+            </summary>
+            <typeparam name="TMiddleware">The middleware type.</typeparam>
+            <param name="app">The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> instance.</param>
+            <param name="container">The container to resolve <typeparamref name="TMiddleware"/> from.</param>
+            <returns>The supplied <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> instance.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when one of the arguments is a null reference.</exception>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions.UseMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Type,SimpleInjector.Container)">
+            <summary>
+            Adds a middleware type to the application's request pipeline. The middleware will be resolved from
+            the supplied the Simple Injector <paramref name="container"/>. The middleware will be added to the
+            container for verification.
+            </summary>
+            <param name="app">The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> instance.</param>
+            <param name="middlewareType">The middleware type that needs to be applied. This type must 
+            implement <see cref="T:Microsoft.AspNetCore.Http.IMiddleware"/>.</param>
+            <param name="container">The container to resolve <paramref name="middlewareType"/> from.</param>
+            <returns>The supplied <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> instance.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when one of the arguments is a null reference.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the <paramref name="middlewareType"/> does not
+            derive from <see cref="T:Microsoft.AspNetCore.Http.IMiddleware"/>, is an open-generic type, or not a concrete constructable
+            type.</exception>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions.AutoCrossWireAspNetComponents(SimpleInjector.Container,Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Allows registrations made using the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> API to be resolved by Simple
+            Injector.
+            </summary>
+            <param name="container">The container.</param>
+            <param name="app">The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> instance.</param>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreIntegrationExtensions.AutoCrossWireAspNetComponents(SimpleInjector.Container,System.IServiceProvider)">
+            <summary>
+            Allows registrations made using the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> API to be resolved by Simple
+            Injector.
+            </summary>
+            <param name="container">The container.</param>
+            <param name="appServices">The <see cref="T:System.IServiceProvider"/> instance that provides the set of
+            singleton services.</param>
+        </member>
+        <member name="T:SimpleInjector.SimpleInjectorUseOptionsAspNetCoreExtensions">
+            <summary>
+            Extension methods to finalize Simple Injector integration on top of ASP.NET Core.
+            </summary>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorUseOptionsAspNetCoreExtensions.UseSimpleInjector(Microsoft.AspNetCore.Builder.IApplicationBuilder,SimpleInjector.Container)">
+            <summary>
+            Finalizes the configuration of Simple Injector on top of <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>. Will
+            ensure framework components can be injected into Simple Injector-resolved components, unless
+            <see cref="P:SimpleInjector.SimpleInjectorUseOptions.AutoCrossWireFrameworkComponents"/> is set to <c>false</c>.
+            </summary>
+            <param name="app">The application's <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>.</param>
+            <param name="container">The application's <see cref="T:SimpleInjector.Container"/> instance.</param>
+            <returns>The supplied <paramref name="app"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="app"/> or
+            <paramref name="container"/> are null references.</exception>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorUseOptionsAspNetCoreExtensions.UseSimpleInjector(Microsoft.AspNetCore.Builder.IApplicationBuilder,SimpleInjector.Container,System.Action{SimpleInjector.SimpleInjectorUseOptions})">
+            <summary>
+            Finalizes the configuration of Simple Injector on top of <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>. Will
+            ensure framework components can be injected into Simple Injector-resolved components, unless
+            <see cref="P:SimpleInjector.SimpleInjectorUseOptions.AutoCrossWireFrameworkComponents"/> is set to <c>false</c>
+            using the <paramref name="setupAction"/>.
+            </summary>
+            <param name="app">The application's <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>.</param>
+            <param name="container">The application's <see cref="T:SimpleInjector.Container"/> instance.</param>
+            <param name="setupAction">An optional setup action.</param>
+            <returns>The supplied <paramref name="app"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="app"/> or
+            <paramref name="container"/> are null references.</exception>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorUseOptionsAspNetCoreExtensions.UseMiddleware``1(SimpleInjector.SimpleInjectorUseOptions,Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Adds a middleware type to the application's request pipeline. The middleware will be resolved
+            from Simple Injector. The middleware will be added to the container for verification.
+            </summary>
+            <typeparam name="TMiddleware">The middleware type.</typeparam>
+            <param name="options">The <see cref="T:SimpleInjector.SimpleInjectorUseOptions"/>.</param>
+            <param name="app">The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> instance.</param>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorUseOptionsAspNetCoreExtensions.UseMiddleware(SimpleInjector.SimpleInjectorUseOptions,System.Type,Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Adds a middleware type to the application's request pipeline. The middleware will be resolved
+            from Simple Injector. The middleware will be added to the container for verification.
+            </summary>
+            <param name="options">The <see cref="T:SimpleInjector.SimpleInjectorUseOptions"/>.</param>
+            <param name="middlewareType">The middleware type.</param>
+            <param name="app">The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> instance.</param>
+        </member>
+    </members>
+</doc>

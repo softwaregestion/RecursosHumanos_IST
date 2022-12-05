@@ -1,0 +1,107 @@
+﻿ 
+    <nav class="navbar navbar-expand-custom navbar-static-top" role="navigation">
+        <a href="~/home/index"><img src="~/Images/kupfer_logo - copia.png" class="img-responsive login-img" style="max-height: 50px; margin:3px;margin-left:20px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-reorder"></i>
+        </button>
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="">
+                    <a aria-expanded="false" role="button" href="layouts.html"> </a>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Crear Solicitud</a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="~/AppCrearSolicitud/VentaNormal">Venta Normal</a></li>
+                        <li><a href="~/AppCrearSolicitud/VentaCuotas">Venta en Cuotas</a></li>
+                        <li><a href="~/AppCrearSolicitud/LCInnominadas">LC Innominada</a></li>
+                        <li><a href="~/AppCrearSolicitud/LcNominadas">LC Nominada</a></li>
+                        <li><a href="~/AppCrearSolicitud/LcKupfer">Riesgo Küpfer</a></li>
+                        <li><a href="~/AppCrearSolicitud/CambioCondiciones">Cambio de Condiciones</a></li>
+                        <li><a href="~/AppCrearSolicitud/BloqueoDesbloqueo">Bloqueo y Desbloqueo</a></li>
+                        <li><a href="~/AppCrearSolicitud/CreacionDM">Creación DM</a></li>
+                        <li><a href="~/AppCrearSolicitud/ProrrogaCheque">Prórroga de Cheque</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Solicitudes</a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="~/AppBusquedas/MisSolicitudes">Mis Solicitudes</a></li>
+                        <li><a href="~/AppBusquedas/Pendientes">Pendientes</a></li>
+                        <li><a href="~/AppBusquedas/Derivadas">Derivadas</a></li>
+                        <li><a href="~/AppBusquedas/Todas">Todas</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Reportes</a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="~/AppReporte/SeguimientoKpi">Seguimiento KPI</a></li>
+                        <li><a href="~/AppReporte/Clientes">Consultas Clientes</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Mantenedores</a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="~/User/Admin">Admin Usuario</a></li>
+                        <li><a href="~/User/Create">Crear Usuario</a></li>
+                        <li><a href="~/AppMantenedores/Perfiles">Perfiles Usuario</a></li>
+                        <li><a href="~/AppMantenedores/Notificaciones">Admin Notificaciones</a></li>
+                        <li><a href="~/AppMantenedores/SLA">Niveles de Aprobación</a></li>
+                        <li><a href="~/AppMantenedores/Jornadas">Jornadas</a></li>
+                        <li><a href="~/AppMantenedores/Feriados">Feriados</a></li>
+                        <li><a href="@Url.Action("Index", "Moneda")">Monedas</a></li>
+                        <li><a href="~/AppMantenedores/CondicionPago">Condiciones de Pago</a></li>
+
+
+                        <li><a href="~/AppMantenedores/AdminSLa">Admin SLA</a></li>
+                        <li><a href="@Url.Action("Index", "Sucursal")">Sucursales</a></li>
+                        <li><a href="@Url.Action("Index", "Sociedades")">Admin Sociedades</a></li>
+                        <li><a href="@Url.Action("Index", "FormaPago")">Forma de pago</a></li>
+                        @*<li><a href="@Url.Action("Index", "TipoFormaPago")">Tipo de pago</a></li>*@
+                        <li><a href="@Url.Action("Index", "Clientes")">Clientes</a></li>
+                        <li><a href="@Url.Action("Index", "MotivoRechazo")">Motivo de Rechazo</a></li>
+                        <li><a href="@Url.Action("Index", "SolicitudEstado")">Solicitud de estado</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+
+                    <i class="fa fa-user-plus"></i> Usuario
+
+                    @if (User != null)
+                    {
+                        <input type="text" value="@User.Identity.Name" disabled style="font-size:10px; width:120px" />
+                    }
+                    else
+                    {
+                        <input type="text" value="-" disabled style="font-size:10px; width:120px" />
+                    }
+
+                </li>
+            </ul>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <i class="fa fa-money">
+                        USD
+                        <input type="text" value="772,78" disabled style="font-size:10px; width:120px; margin-left: 5px;" />
+                    </i>
+                    <br />
+                    <i class="fa fa-money">
+                        UF &nbsp &nbsp
+                        <input type="text" value="29,796.90" disabled style="font-size:10px; width:120px" />
+                    </i>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <a href="~/user/SignOut">
+                        <i class="fa fa-sign-out"></i> Salir
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+ 

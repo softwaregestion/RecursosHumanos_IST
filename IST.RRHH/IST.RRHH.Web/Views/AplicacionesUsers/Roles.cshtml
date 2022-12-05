@@ -1,0 +1,148 @@
+﻿@model IST.RRHH.Web.Helpers.ModelUsers
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container body-content">
+
+  
+    @if (ViewBag.Error != null)
+    {
+        <h3 class="alert alert-danger">@ViewBag.Error</h3>
+    }
+    @if (ViewBag.Success != null)
+    {
+        <h3 class="alert alert-success">@ViewBag.Success</h3>
+    }
+
+
+
+<div class="container body-content">
+
+
+    
+    
+    <div class="panel  panel-default " style="padding:20px">
+        
+        <div class="row">
+            <div class="col-md-3">
+
+               
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Listado de aplicaciones de usuario con sus roles:  </h3>
+                    </div>
+
+                    <hr/>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @foreach (var item in Model.AppSystem.OrderBy(c => c))
+                                {
+                                    var client = Model.App.FirstOrDefault(c => c.ClientName == item);
+                                    if (client == null)
+                                    {
+                                        continue;
+                                    }
+
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" style="height:60px">
+                                            <h1 class="panel-title">Roles de la Aplicación: @client.ClientName</h1>
+
+                                             <hr/>
+                                        </div>
+                                        <div class="panel-body" id="content_@client.Id" style="padding:50px;">
+                                            <div class="col-md-6">
+                                                <h4> Roles configurados</h4>
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="220">
+                                                                Nombre
+                                                            </th>
+                                                            <th class="text-center" width="130">
+                                                                Acción
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var rol in Model.Rols.Where(c => c.Clients == item))
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @rol.Nombre
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <form action="~/Aplicacionesusers/DeleteRoles" method="post">
+                                                                        <input type="hidden" id="Id" name="Id" value="@Model.Id">
+                                                                        <input type="hidden" value="@item" name="application">
+                                                                        <input type="hidden" value="@rol.Nombre" name="rol">
+                                                                        <input type="submit" value="Remover" class="btn btn-link btn-sm">
+                                                                    </form>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <h4>Asignar rol al usuario </h4>
+                                                
+
+                                                <form action="~/Aplicacionesusers/AddRoles" method="post" class="text-right">
+                                                    <input type="hidden" id="Id" name="Id" value="@Model.Id">
+                                                    <select name="rol" class=" " style="width:100%">
+
+                                                        @{
+                                                            var options = Model.Roles.Where(c => c.ClientId == client.Id).ToList();
+
+                                                            foreach (var itemrol in options)
+                                                            {
+
+
+                                                                <option value="@itemrol.Value">@itemrol.Value</option>
+
+                                                            }
+                                                        }
+
+                                                    </select>
+                                                    <br />
+                                                    <input type="submit" value="Agregar" class="btn btn-primary btn-sm" style="">
+                                                    <input type="hidden" value="@item" name="application">
+
+
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <hr />
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+

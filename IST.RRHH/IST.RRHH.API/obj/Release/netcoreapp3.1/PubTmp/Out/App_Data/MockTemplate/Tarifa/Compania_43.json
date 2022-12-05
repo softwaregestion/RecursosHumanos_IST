@@ -1,0 +1,734 @@
+﻿[
+  {
+    "Nombre": "Light",
+    "CodigoProducto": 3300,
+    "Deducibles": [
+      {
+        "Nombre": "SD",
+        "CodigoDeducible": "1",
+        "FormaPago": [
+          {
+
+            "FormaPagoId": "1",
+            "FormaPago": "PAC",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "2",
+            "FormaPago": "PAT",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "3",
+            "FormaPago": "Cont.",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "4",
+            "FormaPago": "A.Venc",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          }
+        ]
+
+
+      },
+      {
+        "Nombre": "3",
+        "CodigoDeducible": "2",
+        "FormaPago": [
+          {
+
+            "FormaPagoId": "1",
+            "FormaPago": "PAC",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "2",
+            "FormaPago": "PAT",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "3",
+            "FormaPago": "Cont.",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "4",
+            "FormaPago": "A.Venc",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          }
+        ]
+
+
+      },
+      {
+        "Nombre": "5",
+        "CodigoDeducible": "3",
+        "FormaPago": [
+          {
+
+            "FormaPagoId": "1",
+            "FormaPago": "PAC",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "2",
+            "FormaPago": "PAT",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "3",
+            "FormaPago": "Cont.",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "4",
+            "FormaPago": "A.Venc",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          }
+        ]
+
+      },
+      {
+        "Nombre": "10",
+        "CodigoDeducible": "4",
+        "FormaPago": [
+          {
+
+            "FormaPagoId": "1",
+            "FormaPago": "PAC",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "2",
+            "FormaPago": "PAT",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "3",
+            "FormaPago": "Cont.",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "4",
+            "FormaPago": "A.Venc",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          }
+        ]
+
+      }
+    ]
+  },
+  {
+    "Nombre": "Plus",
+    "CodigoProducto": 3301,
+    "Deducibles": [
+      {
+        "Nombre": "SD",
+        "CodigoDeducible": "1",
+        "FormaPago": [
+          {
+
+            "FormaPagoId": "1",
+            "FormaPago": "PAC",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "2",
+            "FormaPago": "PAT",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "3",
+            "FormaPago": "Cont.",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "4",
+            "FormaPago": "A.Venc",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          }
+        ]
+
+
+      },
+      {
+        "Nombre": "3",
+        "CodigoDeducible": "2",
+        "FormaPago": [
+          {
+
+            "FormaPagoId": "1",
+            "FormaPago": "PAC",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "2",
+            "FormaPago": "PAT",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "3",
+            "FormaPago": "Cont.",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "4",
+            "FormaPago": "A.Venc",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          }
+        ]
+
+
+      },
+      {
+        "Nombre": "5",
+        "CodigoDeducible": "3",
+        "FormaPago": [
+          {
+
+            "FormaPagoId": "1",
+            "FormaPago": "PAC",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "2",
+            "FormaPago": "PAT",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "3",
+            "FormaPago": "Cont.",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "4",
+            "FormaPago": "A.Venc",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          }
+        ]
+
+      },
+      {
+        "Nombre": "10",
+        "CodigoDeducible": "4",
+        "FormaPago": [
+          {
+
+            "FormaPagoId": "1",
+            "FormaPago": "PAC",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "2",
+            "FormaPago": "PAT",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "3",
+            "FormaPago": "Cont.",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "4",
+            "FormaPago": "A.Venc",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          }
+        ]
+
+      }
+    ]
+  },
+  {
+    "Nombre": "Premium",
+    "CodigoProducto": 3302,
+    "Deducibles": [
+      {
+        "Nombre": "SD",
+        "CodigoDeducible": "1",
+        "FormaPago": [
+          {
+
+            "FormaPagoId": "1",
+            "FormaPago": "PAC",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "2",
+            "FormaPago": "PAT",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "3",
+            "FormaPago": "Cont.",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "4",
+            "FormaPago": "A.Venc",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          }
+        ]
+
+
+      },
+      {
+        "Nombre": "3",
+        "CodigoDeducible": "2",
+        "FormaPago": [
+          {
+
+            "FormaPagoId": "1",
+            "FormaPago": "PAC",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "2",
+            "FormaPago": "PAT",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "3",
+            "FormaPago": "Cont.",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "4",
+            "FormaPago": "A.Venc",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          }
+        ]
+
+
+      },
+      {
+        "Nombre": "5",
+        "CodigoDeducible": "3",
+        "FormaPago": [
+          {
+
+            "FormaPagoId": "1",
+            "FormaPago": "PAC",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "2",
+            "FormaPago": "PAT",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "2735",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "3",
+            "FormaPago": "Cont.",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "4",
+            "FormaPago": "A.Venc",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          }
+        ]
+
+      },
+      {
+        "Nombre": "10",
+        "CodigoDeducible": "4",
+        "FormaPago": [
+          {
+
+            "FormaPagoId": "1",
+            "FormaPago": "PAC",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "2",
+            "FormaPago": "PAT",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "3",
+            "FormaPago": "Cont.",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          },
+          {
+
+            "FormaPagoId": "4",
+            "FormaPago": "A.Venc",
+            "PrimaBruta": "1.19",
+            "PrimaAfecta": "1.00",
+            "PrimaExenta": "0.00",
+            "Iva": "0.19",
+            "ValorBrutoPeso": "32820",
+            "ValorCuota": "32820",
+            "PrimaMinima": true
+
+          }
+        ]
+
+      }
+    ]
+  }
+]

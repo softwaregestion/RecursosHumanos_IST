@@ -1,0 +1,244 @@
+﻿@model IST.RRHH.Web.Models.UserIndexModel
+@{
+    ViewBag.Title = "Mi cuenta";
+}
+
+<style>
+    .w-100px {
+        width: 150px !important;
+    }
+</style>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Administrador de usuarios</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("Index", "Home")" style="color: #702fa0">Inicio</a>
+            </li>
+            
+            <li class="active breadcrumb-item">
+                <strong>Mi cuenta</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="mailbox">
+    <!-- BEGIN mailbox-toolbar -->
+    @using (Html.BeginForm())
+    {
+        
+        <div class="mailbox-toolbar">
+            <div class="mailbox-toolbar-item"><span class="mailbox-toolbar-text">Mantén la información actualizada de tu cuenta</span></div>
+            <hr />
+            <div class="mailbox-toolbar-item text-center">
+
+                <button style="margin-top: -2px; background-color: #702fa0; color: white" type="submit" name="btnPost" value="Grabar" class="btn btn-sm btn-block">
+                    <i class="fa fa-save"></i> Guardar cambios
+                </button>
+
+
+                <a style="margin-top: -2px; background-color: #cf2484; color: white" class="modal-launcher btn btn-sm  btn-block"
+                   href="#"
+                   data-url="@Url.Action("RecoveryPassword", "User", new { id = Model.UserId })">
+                    <i class="fa fa-mail-forward"></i> Reestablecer contraseña
+                </a>
+            </div>
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Adherente"))
+            {
+                <div class="mailbox-toolbar-item">
+
+                    <a style="margin-top: -2px; background-color: #ff7c00; color: white" class="btn btn-sm  btn-block"
+                       href="#"
+                       onclick="editarAdherente()">
+                        <i class="fa fa-mail-forward"></i> Editar perfil @Model.Rol
+                    </a>
+                </div>
+            }
+
+        </div>
+        <hr />
+        <!-- END mailbox-toolbar -->
+        <!-- BEGIN mailbox-body -->
+        <div class="mailbox-body">
+            <div class="mailbox-content">
+                <!-- BEGIN scrollbar -->
+                <div data-scrollbar="true" data-height="100%" data-skip-mobile="true">
+                    <div class="mailbox-form">
+                        <form action="#" method="POST" name="email_form">
+                            <div class="mailbox-form-header">
+
+                                @Html.HiddenFor(c => c.UserId)
+                                @Html.HiddenFor(d => d.Rol)
+
+                                <div class="row p-1">
+                                    <label class="col-form-label w-100px ps-2 pe-2 fw-500 text-end">Perfil:</label>
+                                    <div class="col">
+                                        <input type="text" value="@Model.Rol" class="form-control" disabled />
+                                    </div>
+                                </div>
+                                <div class="row p-1">
+                                    <label class="col-form-label w-100px ps-2 pe-2 fw-500 text-end">Email:</label>
+                                    <div class="col">
+                                        @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="row p-1">
+                                    <label class="col-form-label w-100px ps-2 pe-2 fw-500 text-end">Rut:</label>
+                                    <div class="col">
+                                        @Html.TextBoxFor(c => c.Rut, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="row p-1">
+                                    <label class="col-form-label w-100px ps-2 pe-2 fw-500 text-end">Nombres:</label>
+                                    <div class="col">
+                                        @Html.TextBoxFor(c => c.Nombres, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="row p-1">
+                                    <label class="col-form-label w-100px ps-2 pe-2 fw-500 text-end">Apellido Paterno:</label>
+                                    <div class="col">
+                                        @Html.TextBoxFor(c => c.ApellidoPaterno, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="row p-1">
+                                    <label class="col-form-label w-100px ps-2 pe-2 fw-500 text-end">Apellido Materno:</label>
+                                    <div class="col">
+                                        @Html.TextBoxFor(c => c.ApellidoMaterno, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="row p-1">
+                                    <label class="col-form-label w-100px ps-2 pe-2 fw-500 text-end">Teléfono:</label>
+                                    <div class="col">
+                                        @Html.TextBoxFor(c => c.Telefono, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="row p-1">
+                                    <label class="col-form-label w-100px ps-2 pe-2 fw-500 text-end">Dirección:</label>
+                                    <div class="col">
+                                        @Html.TextBoxFor(c => c.Direccion, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <!-- END scrollbar -->
+            </div>
+        </div>
+        <!-- END mailbox-body -->
+    }
+
+</div>
+
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+
+    <div class="wrapper wrapper-content  animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="ibox">
+                    <div class="ibox-content" style="min-height: 1030px">
+
+                                             
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="modal-form" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog mw-100 w-75">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modal-close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <iframe class="col-lg-12 col-md-12 col-sm-12" src='' id="viewContent" height="800" frameBorder="0">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+
+    <link href="~/lib/iCheck/custom.css" rel="stylesheet" />
+    <link href="~/lib/sweetalert/dist/sweetalert.css" rel="stylesheet" />
+
+}
+
+@section Scripts {
+    <script src="~/lib/iCheck/icheck.min.js"></script>
+    <script src="~/lib/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+
+        function editarAdherente() {
+
+            window.location = '@IST.RRHH.Web.AppConfig.UrlWeb' +'/Adherente/Edit?userId=' + '@Model.UserId';
+
+        }
+
+        var controller = '@ViewContext.RouteData.Values["controller"].ToString()';
+
+        var User = {};
+        var UserId = '@Model.UserId';
+
+        var topscroll = 0;
+
+        console.log(User);
+
+        $(document.body).on("click", ".client-link", function (e) {
+            e.preventDefault()
+            $(".selected .tab-pane").removeClass('active');
+            $($(this).attr('href')).addClass("active");
+        });
+
+        $(document).ready(function () {
+
+
+            $(".modal-launcher, #modal-background, #modal-close").click(function () {
+
+
+                $fancyModal = $('#modal-form');
+                $fancyModal.modal('show');
+                    var url = $(this).data("url");
+                    var iframe = document.getElementById("viewContent");
+
+                    if ($('#modal-form:visible').length == 0) {
+                        iframe.src = url  + "?" + (new Date().getTime());
+                        topscroll = $(window).scrollTop();
+                        $(window).scrollTop(0);
+                    }
+                    else {
+                        iframe.src = "";
+                        //llamarApiUsuario(User.UserId);
+                        $(window).scrollTop(topscroll);
+                    }
+
+                    $("#modal-content,#modal-background").toggle();
+
+
+
+
+            });
+
+
+        });
+
+
+
+
+    </script>
+
+}

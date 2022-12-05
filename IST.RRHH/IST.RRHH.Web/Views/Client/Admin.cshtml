@@ -1,0 +1,2978 @@
+﻿@model IST.RRHH.Web.Models.ClientIndexModel
+@{
+    ViewBag.Title = "Autorización de usuarios";
+}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/fontawesome.css">  
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Administrador de usuarios</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("Index", "Home")" style="color: #702fa0">Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a>Aplicaciones</a>
+            </li>
+            <li class="active breadcrumb-item">
+                <strong>Administrador de Aplicaciones</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content  animated fadeInRight m-n-md">
+    <div class="row">
+        @{ 
+            var disableditem = "";
+            if (Model.ClientId != null)
+            {
+                disableditem = "display:none";
+            }
+        }
+        
+
+        <div class="col-sm-2" >
+            <div class="ibox" style="@disableditem">
+                <div class="ibox-content p-2 shadow-lg" style="background: #FFFFFF !important;">
+
+
+                    <div class="input-group hide" style="display:none" >
+                        <input type="text" placeholder="Buscar Usuario... " class="input form-control btn-search">
+
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn  btnBuscar" style="background-color: #702fa0; color: white"> <i class=" fa fa-search"></i> Buscar</button>
+                        </span>
+                    </div>
+                    <div class="clients-list">
+
+
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div style="overflow-y: scroll">
+                                    <div style="height: 644px;">
+                                        @* class="table table-hover" *@
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                @if (Model.Items != null && Model.Items.Count > 0)
+                                                {
+                                                    if (Model.ClientId != null)
+                                                    {
+                                                        Model.Items.RemoveAll(c => c.ClientId != Model.ClientId);
+                                                    }
+
+                                                    foreach (var item in Model.Items)
+                                                    {
+
+
+                                                        var activo = "";
+                                                        //if (Model.clientId == item.clientId)
+                                                        //{
+                                                        //    activo = "active-tr";
+                                                        //}
+
+                                                        <tr class="form-group m-b-xl  @activo rowclient border" style="cursor: pointer">
+                                                            <td class="text-center client-@item.ClientId ReadclientData col-md-4" data-id="@item.ClientId" style="width:250px">
+
+                                                                <span class="font-weight-bold" style=" color: #702fa0;"><i class=" fa fa-client"></i></span>
+                                                                <br />
+                                                                <a style="color: #ff7c00" class=" p-2" data-id="@item.ClientId">
+                                                                    @item.Nombre
+                                                                </a>
+                                                                 
+
+
+                                                            </td>
+                                                            <td class="ReadclientData col-md-8" data-id="@item.ClientId" >
+                                                                <ul>
+                                                                    @foreach (var item2 in item.ListadoClaims)
+                                                                    {
+                                                                        <li title="Id">  <i class=" fa fa-check-circle"> </i> @item2.Value   </li>
+                                                                    }
+
+                                                                  
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <tr class="col-md-12 ReadclientData">
+                                                        <td> Sin registros para la consulta.</td>
+                                                    </tr>
+                                                }
+
+
+
+
+                                            </tbody>
+                                        </table>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        @* cliente-list *@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="ibox selected">
+
+                <div class="ibox-content">
+                    <div class="tab-content">
+                        <div id="contact-1" class="tab-pane ">
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.HiddenFor(c => c.ClientId) 
+                                <div class="row m-b-lg">
+                                    <div class="col-lg-4 text-center">
+                                        <h2 id="jsonNombre"> [nombre]</h2>
+
+                                        <div class="m-b-sm" style="font-size:18px">
+                                            <i class=" fa fa-client"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <strong>
+                                            Configuración:
+                                        </strong>
+                                        <p>
+                                            Manten la información actualizada de tus clientes
+                                        </p>
+
+
+                                        @*<a class="modal-launcher btn btn-success btn-block"
+                                           href="javascript:void(0);"
+                                           data-url="@Url.Action("RecoveryPassword", "client")">
+                                            <i class=" fa fa-mail-forward"></i>Restablecer contraseña
+                                        </a>*@
+
+                                        <button type="submit" name="btnPost" value="Grabar" class="btn btn-success btn-block">
+                                            <i class=" fa fa-save"></i> Grabar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="client-detail" style="overflow-y:auto">
+                                    <div>
+ 
+                                        @Html.HiddenFor(c => c.Icono )
+
+                                        <strong>Datos</strong>
+
+                                        <ul class="list-group clear-list">
+                                        
+                                            <li class="list-group-item ">
+                                                <span class="float-left"> Time Out  </span>
+                                                @Html.TextBoxFor(c => c.TimeOut, new { @class = "form-control" })
+                                            </li>
+                                             <li class="list-group-item ">
+                                                <span class="float-left"> Descripción  </span>
+                                                @Html.TextBoxFor(c => c.Descripcion, new { @class = "form-control" })
+                                            </li>
+
+                                            <li class="list-group-item ">
+                                                <span class="float-left"> Icono  </span>
+                                               <hr/>
+                                              
+                                                @if( string.IsNullOrEmpty(Model.Icono))
+                                                {
+                                                    <div id="IconShow">
+                                                           <i  class="far fa-user" style="font-size: 60px;"></i>
+
+                                                    </div> 
+                                                     <a href="#" class="CambioIconos"> - Cambiar</a>
+
+                                                  
+                                                }
+                                                else
+                                                {
+                                                      <div id="IconShow">
+                                                          <i id=""  class="@Model.Icono" style="font-size: 60px;"></i>    
+
+                                                    </div>
+                                                          <a href="#" class="CambioIconos"> - Cambiar.</a>                                        
+                                                } 
+                                                 <hr/>
+<div class="row iconos" style="display:none">
+
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?500px?style=brands" class=" "><i class="iconclick fab fa-500px" style="font-size: 48px;"></i></a> 
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?accessible-icon?style=brands" class=" "><i class="iconclick fab fa-accessible-icon" style="font-size: 48px;"></i></a> 
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?accusoft?style=brands" class=" "><i class="iconclick fab fa-accusoft" style="font-size: 48px;"></i></a> 
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?acquisitions-incorporated?style=brands" class=" "><i class="iconclick fab fa-acquisitions-incorporated" style="font-size: 48px;"></i></a> 
+          
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?ad?style=solid" class=" "><i class="iconclick fas fa-ad" style="font-size: 48px;"></i></a> 
+           
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?address-book?style=solid" class=" "><i class="iconclick fas fa-address-book" style="font-size: 48px;"></i></a> 
+           
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?address-book?style=regular" class=" "><i class="iconclick far fa-address-book" style="font-size: 48px;"></i></a> 
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?address-card?style=solid" class=" "><i class="iconclick fas fa-address-card" style="font-size: 48px;"></i></a> 
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?address-card?style=regular" class=" "><i class="iconclick far fa-address-card" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?adjust?style=solid" class=" "><i class="iconclick fas fa-adjust" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?adn?style=brands" class=" "><i class="iconclick fab fa-adn" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?adversal?style=brands" class=" "><i class="iconclick fab fa-adversal" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?affiliatetheme?style=brands" class=" "><i class="iconclick fab fa-affiliatetheme" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?air-freshener?style=solid" class=" "><i class="iconclick fas fa-air-freshener" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?airbnb?style=brands" class=" "><i class="iconclick fab fa-airbnb" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?algolia?style=brands" class=" "><i class="iconclick fab fa-algolia" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?align-center?style=solid" class=" "><i class="iconclick fas fa-align-center" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?align-justify?style=solid" class=" "><i class="iconclick fas fa-align-justify" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?align-left?style=solid" class=" "><i class="iconclick fas fa-align-left" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?align-right?style=solid" class=" "><i class="iconclick fas fa-align-right" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?alipay?style=brands" class=" "><i class="iconclick fab fa-alipay" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?allergies?style=solid" class=" "><i class="iconclick fas fa-allergies" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?amazon?style=brands" class=" "><i class="iconclick fab fa-amazon" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?amazon-pay?style=brands" class=" "><i class="iconclick fab fa-amazon-pay" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?ambulance?style=solid" class=" "><i class="iconclick fas fa-ambulance" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?american-sign-language-interpreting?style=solid" class=" "><i class="iconclick fas fa-american-sign-language-interpreting" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?amilia?style=brands" class=" "><i class="iconclick fab fa-amilia" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?anchor?style=solid" class=" "><i class="iconclick fas fa-anchor" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?android?style=brands" class=" "><i class="iconclick fab fa-android" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?angellist?style=brands" class=" "><i class="iconclick fab fa-angellist" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?angle-double-down?style=solid" class=" "><i class="iconclick fas fa-angle-double-down" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?angle-double-left?style=solid" class=" "><i class="iconclick fas fa-angle-double-left" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?angle-double-right?style=solid" class=" "><i class="iconclick fas fa-angle-double-right" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?angle-double-up?style=solid" class=" "><i class="iconclick fas fa-angle-double-up" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?angle-down?style=solid" class=" "><i class="iconclick fas fa-angle-down" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?angle-left?style=solid" class=" "><i class="iconclick fas fa-angle-left" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?angle-right?style=solid" class=" "><i class="iconclick fas fa-angle-right" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?angle-up?style=solid" class=" "><i class="iconclick fas fa-angle-up" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?angry?style=solid" class=" "><i class="iconclick fas fa-angry" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?angry?style=regular" class=" "><i class="iconclick far fa-angry" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?angrycreative?style=brands" class=" "><i class="iconclick fab fa-angrycreative" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?angular?style=brands" class=" "><i class="iconclick fab fa-angular" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?ankh?style=solid" class=" "><i class="iconclick fas fa-ankh" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?app-store?style=brands" class=" "><i class="iconclick fab fa-app-store" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?app-store-ios?style=brands" class=" "><i class="iconclick fab fa-app-store-ios" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?apper?style=brands" class=" "><i class="iconclick fab fa-apper" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?apple?style=brands" class=" "><i class="iconclick fab fa-apple" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?apple-alt?style=solid" class=" "><i class="iconclick fas fa-apple-alt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?apple-pay?style=brands" class=" "><i class="iconclick fab fa-apple-pay" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?archive?style=solid" class=" "><i class="iconclick fas fa-archive" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?archway?style=solid" class=" "><i class="iconclick fas fa-archway" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-alt-circle-down?style=solid" class=" "><i class="iconclick fas fa-arrow-alt-circle-down" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-alt-circle-down?style=regular" class=" "><i class="iconclick far fa-arrow-alt-circle-down" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-alt-circle-left?style=solid" class=" "><i class="iconclick fas fa-arrow-alt-circle-left" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-alt-circle-left?style=regular" class=" "><i class="iconclick far fa-arrow-alt-circle-left" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-alt-circle-right?style=solid" class=" "><i class="iconclick fas fa-arrow-alt-circle-right" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-alt-circle-right?style=regular" class=" "><i class="iconclick far fa-arrow-alt-circle-right" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-alt-circle-up?style=solid" class=" "><i class="iconclick fas fa-arrow-alt-circle-up" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-alt-circle-up?style=regular" class=" "><i class="iconclick far fa-arrow-alt-circle-up" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-circle-down?style=solid" class=" "><i class="iconclick fas fa-arrow-circle-down" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-circle-left?style=solid" class=" "><i class="iconclick fas fa-arrow-circle-left" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-circle-right?style=solid" class=" "><i class="iconclick fas fa-arrow-circle-right" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-circle-up?style=solid" class=" "><i class="iconclick fas fa-arrow-circle-up" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-down?style=solid" class=" "><i class="iconclick fas fa-arrow-down" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-left?style=solid" class=" "><i class="iconclick fas fa-arrow-left" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-right?style=solid" class=" "><i class="iconclick fas fa-arrow-right" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrow-up?style=solid" class=" "><i class="iconclick fas fa-arrow-up" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrows-alt?style=solid" class=" "><i class="iconclick fas fa-arrows-alt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrows-alt-h?style=solid" class=" "><i class="iconclick fas fa-arrows-alt-h" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?arrows-alt-v?style=solid" class=" "><i class="iconclick fas fa-arrows-alt-v" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?artstation?style=brands" class=" "><i class="iconclick fab fa-artstation" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?assistive-listening-systems?style=solid" class=" "><i class="iconclick fas fa-assistive-listening-systems" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?asterisk?style=solid" class=" "><i class="iconclick fas fa-asterisk" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?asymmetrik?style=brands" class=" "><i class="iconclick fab fa-asymmetrik" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?at?style=solid" class=" "><i class="iconclick fas fa-at" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?atlas?style=solid" class=" "><i class="iconclick fas fa-atlas" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?atlassian?style=brands" class=" "><i class="iconclick fab fa-atlassian" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?atom?style=solid" class=" "><i class="iconclick fas fa-atom" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?audible?style=brands" class=" "><i class="iconclick fab fa-audible" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?audio-description?style=solid" class=" "><i class="iconclick fas fa-audio-description" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?autoprefixer?style=brands" class=" "><i class="iconclick fab fa-autoprefixer" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?avianex?style=brands" class=" "><i class="iconclick fab fa-avianex" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?aviato?style=brands" class=" "><i class="iconclick fab fa-aviato" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?award?style=solid" class=" "><i class="iconclick fas fa-award" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?aws?style=brands" class=" "><i class="iconclick fab fa-aws" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?baby?style=solid" class=" "><i class="iconclick fas fa-baby" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?baby-carriage?style=solid" class=" "><i class="iconclick fas fa-baby-carriage" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?backspace?style=solid" class=" "><i class="iconclick fas fa-backspace" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?backward?style=solid" class=" "><i class="iconclick fas fa-backward" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bacon?style=solid" class=" "><i class="iconclick fas fa-bacon" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bacteria?style=solid" class=" "><i class="iconclick fas fa-bacteria" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bacterium?style=solid" class=" "><i class="iconclick fas fa-bacterium" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bahai?style=solid" class=" "><i class="iconclick fas fa-bahai" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?balance-scale?style=solid" class=" "><i class="iconclick fas fa-balance-scale" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?balance-scale-left?style=solid" class=" "><i class="iconclick fas fa-balance-scale-left" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?balance-scale-right?style=solid" class=" "><i class="iconclick fas fa-balance-scale-right" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?ban?style=solid" class=" "><i class="iconclick fas fa-ban" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?band-aid?style=solid" class=" "><i class="iconclick fas fa-band-aid" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bandcamp?style=brands" class=" "><i class="iconclick fab fa-bandcamp" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?barcode?style=solid" class=" "><i class="iconclick fas fa-barcode" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bars?style=solid" class=" "><i class="iconclick fas fa-bars" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?baseball-ball?style=solid" class=" "><i class="iconclick fas fa-baseball-ball" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?basketball-ball?style=solid" class=" "><i class="iconclick fas fa-basketball-ball" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bath?style=solid" class=" "><i class="iconclick fas fa-bath" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?battery-empty?style=solid" class=" "><i class="iconclick fas fa-battery-empty" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?battery-full?style=solid" class=" "><i class="iconclick fas fa-battery-full" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?battery-half?style=solid" class=" "><i class="iconclick fas fa-battery-half" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?battery-quarter?style=solid" class=" "><i class="iconclick fas fa-battery-quarter" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?battery-three-quarters?style=solid" class=" "><i class="iconclick fas fa-battery-three-quarters" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?battle-net?style=brands" class=" "><i class="iconclick fab fa-battle-net" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bed?style=solid" class=" "><i class="iconclick fas fa-bed" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?beer?style=solid" class=" "><i class="iconclick fas fa-beer" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?behance?style=brands" class=" "><i class="iconclick fab fa-behance" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?behance-square?style=brands" class=" "><i class="iconclick fab fa-behance-square" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bell?style=solid" class=" "><i class="iconclick fas fa-bell" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bell?style=regular" class=" "><i class="iconclick far fa-bell" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bell-slash?style=solid" class=" "><i class="iconclick fas fa-bell-slash" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bell-slash?style=regular" class=" "><i class="iconclick far fa-bell-slash" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bezier-curve?style=solid" class=" "><i class="iconclick fas fa-bezier-curve" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bible?style=solid" class=" "><i class="iconclick fas fa-bible" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bicycle?style=solid" class=" "><i class="iconclick fas fa-bicycle" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?biking?style=solid" class=" "><i class="iconclick fas fa-biking" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bimobject?style=brands" class=" "><i class="iconclick fab fa-bimobject" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?binoculars?style=solid" class=" "><i class="iconclick fas fa-binoculars" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?biohazard?style=solid" class=" "><i class="iconclick fas fa-biohazard" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?birthday-cake?style=solid" class=" "><i class="iconclick fas fa-birthday-cake" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bitbucket?style=brands" class=" "><i class="iconclick fab fa-bitbucket" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bitcoin?style=brands" class=" "><i class="iconclick fab fa-bitcoin" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bity?style=brands" class=" "><i class="iconclick fab fa-bity" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?black-tie?style=brands" class=" "><i class="iconclick fab fa-black-tie" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?blackberry?style=brands" class=" "><i class="iconclick fab fa-blackberry" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?blender?style=solid" class=" "><i class="iconclick fas fa-blender" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?blender-phone?style=solid" class=" "><i class="iconclick fas fa-blender-phone" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?blind?style=solid" class=" "><i class="iconclick fas fa-blind" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?blog?style=solid" class=" "><i class="iconclick fas fa-blog" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?blogger?style=brands" class=" "><i class="iconclick fab fa-blogger" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?blogger-b?style=brands" class=" "><i class="iconclick fab fa-blogger-b" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bluetooth?style=brands" class=" "><i class="iconclick fab fa-bluetooth" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bluetooth-b?style=brands" class=" "><i class="iconclick fab fa-bluetooth-b" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bold?style=solid" class=" "><i class="iconclick fas fa-bold" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bolt?style=solid" class=" "><i class="iconclick fas fa-bolt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bomb?style=solid" class=" "><i class="iconclick fas fa-bomb" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bone?style=solid" class=" "><i class="iconclick fas fa-bone" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bong?style=solid" class=" "><i class="iconclick fas fa-bong" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?book?style=solid" class=" "><i class="iconclick fas fa-book" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?book-dead?style=solid" class=" "><i class="iconclick fas fa-book-dead" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?book-medical?style=solid" class=" "><i class="iconclick fas fa-book-medical" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?book-open?style=solid" class=" "><i class="iconclick fas fa-book-open" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?book-reader?style=solid" class=" "><i class="iconclick fas fa-book-reader" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bookmark?style=solid" class=" "><i class="iconclick fas fa-bookmark" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bookmark?style=regular" class=" "><i class="iconclick far fa-bookmark" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bootstrap?style=brands" class=" "><i class="iconclick fab fa-bootstrap" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?border-all?style=solid" class=" "><i class="iconclick fas fa-border-all" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?border-none?style=solid" class=" "><i class="iconclick fas fa-border-none" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?border-style?style=solid" class=" "><i class="iconclick fas fa-border-style" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bowling-ball?style=solid" class=" "><i class="iconclick fas fa-bowling-ball" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?box?style=solid" class=" "><i class="iconclick fas fa-box" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?box-open?style=solid" class=" "><i class="iconclick fas fa-box-open" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?box-tissue?style=solid" class=" "><i class="iconclick fas fa-box-tissue" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?boxes?style=solid" class=" "><i class="iconclick fas fa-boxes" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?braille?style=solid" class=" "><i class="iconclick fas fa-braille" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?brain?style=solid" class=" "><i class="iconclick fas fa-brain" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bread-slice?style=solid" class=" "><i class="iconclick fas fa-bread-slice" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?briefcase?style=solid" class=" "><i class="iconclick fas fa-briefcase" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?briefcase-medical?style=solid" class=" "><i class="iconclick fas fa-briefcase-medical" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?broadcast-tower?style=solid" class=" "><i class="iconclick fas fa-broadcast-tower" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?broom?style=solid" class=" "><i class="iconclick fas fa-broom" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?brush?style=solid" class=" "><i class="iconclick fas fa-brush" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?btc?style=brands" class=" "><i class="iconclick fab fa-btc" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?buffer?style=brands" class=" "><i class="iconclick fab fa-buffer" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bug?style=solid" class=" "><i class="iconclick fas fa-bug" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?building?style=solid" class=" "><i class="iconclick fas fa-building" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?building?style=regular" class=" "><i class="iconclick far fa-building" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bullhorn?style=solid" class=" "><i class="iconclick fas fa-bullhorn" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bullseye?style=solid" class=" "><i class="iconclick fas fa-bullseye" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?burn?style=solid" class=" "><i class="iconclick fas fa-burn" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?buromobelexperte?style=brands" class=" "><i class="iconclick fab fa-buromobelexperte" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bus?style=solid" class=" "><i class="iconclick fas fa-bus" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?bus-alt?style=solid" class=" "><i class="iconclick fas fa-bus-alt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?business-time?style=solid" class=" "><i class="iconclick fas fa-business-time" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?buy-n-large?style=brands" class=" "><i class="iconclick fab fa-buy-n-large" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?buysellads?style=brands" class=" "><i class="iconclick fab fa-buysellads" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calculator?style=solid" class=" "><i class="iconclick fas fa-calculator" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar?style=solid" class=" "><i class="iconclick fas fa-calendar" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar?style=regular" class=" "><i class="iconclick far fa-calendar" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar-alt?style=solid" class=" "><i class="iconclick fas fa-calendar-alt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar-alt?style=regular" class=" "><i class="iconclick far fa-calendar-alt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar-check?style=solid" class=" "><i class="iconclick fas fa-calendar-check" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar-check?style=regular" class=" "><i class="iconclick far fa-calendar-check" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar-day?style=solid" class=" "><i class="iconclick fas fa-calendar-day" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar-minus?style=solid" class=" "><i class="iconclick fas fa-calendar-minus" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar-minus?style=regular" class=" "><i class="iconclick far fa-calendar-minus" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar-plus?style=solid" class=" "><i class="iconclick fas fa-calendar-plus" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar-plus?style=regular" class=" "><i class="iconclick far fa-calendar-plus" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar-times?style=solid" class=" "><i class="iconclick fas fa-calendar-times" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar-times?style=regular" class=" "><i class="iconclick far fa-calendar-times" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?calendar-week?style=solid" class=" "><i class="iconclick fas fa-calendar-week" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?camera?style=solid" class=" "><i class="iconclick fas fa-camera" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?camera-retro?style=solid" class=" "><i class="iconclick fas fa-camera-retro" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?campground?style=solid" class=" "><i class="iconclick fas fa-campground" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?canadian-maple-leaf?style=brands" class=" "><i class="iconclick fab fa-canadian-maple-leaf" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?candy-cane?style=solid" class=" "><i class="iconclick fas fa-candy-cane" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cannabis?style=solid" class=" "><i class="iconclick fas fa-cannabis" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?capsules?style=solid" class=" "><i class="iconclick fas fa-capsules" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?car?style=solid" class=" "><i class="iconclick fas fa-car" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?car-alt?style=solid" class=" "><i class="iconclick fas fa-car-alt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?car-battery?style=solid" class=" "><i class="iconclick fas fa-car-battery" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?car-crash?style=solid" class=" "><i class="iconclick fas fa-car-crash" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?car-side?style=solid" class=" "><i class="iconclick fas fa-car-side" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?caravan?style=solid" class=" "><i class="iconclick fas fa-caravan" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?caret-down?style=solid" class=" "><i class="iconclick fas fa-caret-down" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?caret-left?style=solid" class=" "><i class="iconclick fas fa-caret-left" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?caret-right?style=solid" class=" "><i class="iconclick fas fa-caret-right" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?caret-square-down?style=solid" class=" "><i class="iconclick fas fa-caret-square-down" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?caret-square-down?style=regular" class=" "><i class="iconclick far fa-caret-square-down" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?caret-square-left?style=solid" class=" "><i class="iconclick fas fa-caret-square-left" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?caret-square-left?style=regular" class=" "><i class="iconclick far fa-caret-square-left" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?caret-square-right?style=solid" class=" "><i class="iconclick fas fa-caret-square-right" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?caret-square-right?style=regular" class=" "><i class="iconclick far fa-caret-square-right" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?caret-square-up?style=solid" class=" "><i class="iconclick fas fa-caret-square-up" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?caret-square-up?style=regular" class=" "><i class="iconclick far fa-caret-square-up" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?caret-up?style=solid" class=" "><i class="iconclick fas fa-caret-up" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?carrot?style=solid" class=" "><i class="iconclick fas fa-carrot" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cart-arrow-down?style=solid" class=" "><i class="iconclick fas fa-cart-arrow-down" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cart-plus?style=solid" class=" "><i class="iconclick fas fa-cart-plus" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cash-register?style=solid" class=" "><i class="iconclick fas fa-cash-register" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cat?style=solid" class=" "><i class="iconclick fas fa-cat" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cc-amazon-pay?style=brands" class=" "><i class="iconclick fab fa-cc-amazon-pay" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cc-amex?style=brands" class=" "><i class="iconclick fab fa-cc-amex" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cc-apple-pay?style=brands" class=" "><i class="iconclick fab fa-cc-apple-pay" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cc-diners-club?style=brands" class=" "><i class="iconclick fab fa-cc-diners-club" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cc-discover?style=brands" class=" "><i class="iconclick fab fa-cc-discover" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cc-jcb?style=brands" class=" "><i class="iconclick fab fa-cc-jcb" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cc-mastercard?style=brands" class=" "><i class="iconclick fab fa-cc-mastercard" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cc-paypal?style=brands" class=" "><i class="iconclick fab fa-cc-paypal" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cc-stripe?style=brands" class=" "><i class="iconclick fab fa-cc-stripe" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cc-visa?style=brands" class=" "><i class="iconclick fab fa-cc-visa" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?centercode?style=brands" class=" "><i class="iconclick fab fa-centercode" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?centos?style=brands" class=" "><i class="iconclick fab fa-centos" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?certificate?style=solid" class=" "><i class="iconclick fas fa-certificate" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chair?style=solid" class=" "><i class="iconclick fas fa-chair" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chalkboard?style=solid" class=" "><i class="iconclick fas fa-chalkboard" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chalkboard-teacher?style=solid" class=" "><i class="iconclick fas fa-chalkboard-teacher" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?charging-station?style=solid" class=" "><i class="iconclick fas fa-charging-station" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chart-area?style=solid" class=" "><i class="iconclick fas fa-chart-area" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chart-bar?style=solid" class=" "><i class="iconclick fas fa-chart-bar" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chart-bar?style=regular" class=" "><i class="iconclick far fa-chart-bar" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chart-line?style=solid" class=" "><i class="iconclick fas fa-chart-line" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chart-pie?style=solid" class=" "><i class="iconclick fas fa-chart-pie" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?check?style=solid" class=" "><i class="iconclick fas fa-check" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?check-circle?style=solid" class=" "><i class="iconclick fas fa-check-circle" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?check-circle?style=regular" class=" "><i class="iconclick far fa-check-circle" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?check-double?style=solid" class=" "><i class="iconclick fas fa-check-double" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?check-square?style=solid" class=" "><i class="iconclick fas fa-check-square" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?check-square?style=regular" class=" "><i class="iconclick far fa-check-square" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cheese?style=solid" class=" "><i class="iconclick fas fa-cheese" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chess?style=solid" class=" "><i class="iconclick fas fa-chess" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chess-bishop?style=solid" class=" "><i class="iconclick fas fa-chess-bishop" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chess-board?style=solid" class=" "><i class="iconclick fas fa-chess-board" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chess-king?style=solid" class=" "><i class="iconclick fas fa-chess-king" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chess-knight?style=solid" class=" "><i class="iconclick fas fa-chess-knight" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chess-pawn?style=solid" class=" "><i class="iconclick fas fa-chess-pawn" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chess-queen?style=solid" class=" "><i class="iconclick fas fa-chess-queen" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chess-rook?style=solid" class=" "><i class="iconclick fas fa-chess-rook" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chevron-circle-down?style=solid" class=" "><i class="iconclick fas fa-chevron-circle-down" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chevron-circle-left?style=solid" class=" "><i class="iconclick fas fa-chevron-circle-left" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chevron-circle-right?style=solid" class=" "><i class="iconclick fas fa-chevron-circle-right" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chevron-circle-up?style=solid" class=" "><i class="iconclick fas fa-chevron-circle-up" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chevron-down?style=solid" class=" "><i class="iconclick fas fa-chevron-down" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chevron-left?style=solid" class=" "><i class="iconclick fas fa-chevron-left" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chevron-right?style=solid" class=" "><i class="iconclick fas fa-chevron-right" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chevron-up?style=solid" class=" "><i class="iconclick fas fa-chevron-up" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?child?style=solid" class=" "><i class="iconclick fas fa-child" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chrome?style=brands" class=" "><i class="iconclick fab fa-chrome" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?chromecast?style=brands" class=" "><i class="iconclick fab fa-chromecast" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?church?style=solid" class=" "><i class="iconclick fas fa-church" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?circle?style=solid" class=" "><i class="iconclick fas fa-circle" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?circle?style=regular" class=" "><i class="iconclick far fa-circle" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?circle-notch?style=solid" class=" "><i class="iconclick fas fa-circle-notch" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?city?style=solid" class=" "><i class="iconclick fas fa-city" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?clinic-medical?style=solid" class=" "><i class="iconclick fas fa-clinic-medical" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?clipboard?style=solid" class=" "><i class="iconclick fas fa-clipboard" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?clipboard?style=regular" class=" "><i class="iconclick far fa-clipboard" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?clipboard-check?style=solid" class=" "><i class="iconclick fas fa-clipboard-check" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?clipboard-list?style=solid" class=" "><i class="iconclick fas fa-clipboard-list" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?clock?style=solid" class=" "><i class="iconclick fas fa-clock" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?clock?style=regular" class=" "><i class="iconclick far fa-clock" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?clone?style=solid" class=" "><i class="iconclick fas fa-clone" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?clone?style=regular" class=" "><i class="iconclick far fa-clone" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?closed-captioning?style=solid" class=" "><i class="iconclick fas fa-closed-captioning" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?closed-captioning?style=regular" class=" "><i class="iconclick far fa-closed-captioning" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloud?style=solid" class=" "><i class="iconclick fas fa-cloud" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloud-download-alt?style=solid" class=" "><i class="iconclick fas fa-cloud-download-alt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloud-meatball?style=solid" class=" "><i class="iconclick fas fa-cloud-meatball" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloud-moon?style=solid" class=" "><i class="iconclick fas fa-cloud-moon" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloud-moon-rain?style=solid" class=" "><i class="iconclick fas fa-cloud-moon-rain" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloud-rain?style=solid" class=" "><i class="iconclick fas fa-cloud-rain" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloud-showers-heavy?style=solid" class=" "><i class="iconclick fas fa-cloud-showers-heavy" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloud-sun?style=solid" class=" "><i class="iconclick fas fa-cloud-sun" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloud-sun-rain?style=solid" class=" "><i class="iconclick fas fa-cloud-sun-rain" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloud-upload-alt?style=solid" class=" "><i class="iconclick fas fa-cloud-upload-alt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloudflare?style=brands" class=" "><i class="iconclick fab fa-cloudflare" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloudscale?style=brands" class=" "><i class="iconclick fab fa-cloudscale" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloudsmith?style=brands" class=" "><i class="iconclick fab fa-cloudsmith" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cloudversify?style=brands" class=" "><i class="iconclick fab fa-cloudversify" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cocktail?style=solid" class=" "><i class="iconclick fas fa-cocktail" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?code?style=solid" class=" "><i class="iconclick fas fa-code" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?code-branch?style=solid" class=" "><i class="iconclick fas fa-code-branch" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?codepen?style=brands" class=" "><i class="iconclick fab fa-codepen" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?codiepie?style=brands" class=" "><i class="iconclick fab fa-codiepie" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?coffee?style=solid" class=" "><i class="iconclick fas fa-coffee" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cog?style=solid" class=" "><i class="iconclick fas fa-cog" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cogs?style=solid" class=" "><i class="iconclick fas fa-cogs" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?coins?style=solid" class=" "><i class="iconclick fas fa-coins" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?columns?style=solid" class=" "><i class="iconclick fas fa-columns" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?comment?style=solid" class=" "><i class="iconclick fas fa-comment" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?comment?style=regular" class=" "><i class="iconclick far fa-comment" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?comment-alt?style=solid" class=" "><i class="iconclick fas fa-comment-alt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?comment-alt?style=regular" class=" "><i class="iconclick far fa-comment-alt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?comment-dollar?style=solid" class=" "><i class="iconclick fas fa-comment-dollar" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?comment-dots?style=solid" class=" "><i class="iconclick fas fa-comment-dots" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?comment-dots?style=regular" class=" "><i class="iconclick far fa-comment-dots" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?comment-medical?style=solid" class=" "><i class="iconclick fas fa-comment-medical" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?comment-slash?style=solid" class=" "><i class="iconclick fas fa-comment-slash" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?comments?style=solid" class=" "><i class="iconclick fas fa-comments" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?comments?style=regular" class=" "><i class="iconclick far fa-comments" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?comments-dollar?style=solid" class=" "><i class="iconclick fas fa-comments-dollar" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?compact-disc?style=solid" class=" "><i class="iconclick fas fa-compact-disc" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?compass?style=solid" class=" "><i class="iconclick fas fa-compass" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?compass?style=regular" class=" "><i class="iconclick far fa-compass" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?compress?style=solid" class=" "><i class="iconclick fas fa-compress" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?compress-alt?style=solid" class=" "><i class="iconclick fas fa-compress-alt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?compress-arrows-alt?style=solid" class=" "><i class="iconclick fas fa-compress-arrows-alt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?concierge-bell?style=solid" class=" "><i class="iconclick fas fa-concierge-bell" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?confluence?style=brands" class=" "><i class="iconclick fab fa-confluence" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?connectdevelop?style=brands" class=" "><i class="iconclick fab fa-connectdevelop" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?contao?style=brands" class=" "><i class="iconclick fab fa-contao" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cookie?style=solid" class=" "><i class="iconclick fas fa-cookie" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cookie-bite?style=solid" class=" "><i class="iconclick fas fa-cookie-bite" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?copy?style=solid" class=" "><i class="iconclick fas fa-copy" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?copy?style=regular" class=" "><i class="iconclick far fa-copy" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?copyright?style=solid" class=" "><i class="iconclick fas fa-copyright" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?copyright?style=regular" class=" "><i class="iconclick far fa-copyright" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cotton-bureau?style=brands" class=" "><i class="iconclick fab fa-cotton-bureau" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?couch?style=solid" class=" "><i class="iconclick fas fa-couch" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?cpanel?style=brands" class=" "><i class="iconclick fab fa-cpanel" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons?style=brands" class=" "><i class="iconclick fab fa-creative-commons" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons-by?style=brands" class=" "><i class="iconclick fab fa-creative-commons-by" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons-nc?style=brands" class=" "><i class="iconclick fab fa-creative-commons-nc" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons-nc-eu?style=brands" class=" "><i class="iconclick fab fa-creative-commons-nc-eu" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons-nc-jp?style=brands" class=" "><i class="iconclick fab fa-creative-commons-nc-jp" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons-nd?style=brands" class=" "><i class="iconclick fab fa-creative-commons-nd" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons-pd?style=brands" class=" "><i class="iconclick fab fa-creative-commons-pd" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons-pd-alt?style=brands" class=" "><i class="iconclick fab fa-creative-commons-pd-alt" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons-remix?style=brands" class=" "><i class="iconclick fab fa-creative-commons-remix" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons-sa?style=brands" class=" "><i class="iconclick fab fa-creative-commons-sa" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons-sampling?style=brands" class=" "><i class="iconclick fab fa-creative-commons-sampling" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons-sampling-plus?style=brands" class=" "><i class="iconclick fab fa-creative-commons-sampling-plus" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons-share?style=brands" class=" "><i class="iconclick fab fa-creative-commons-share" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+      <div class="dib col-md-2  ">
+         <div class=" ">
+            <a href="#?creative-commons-zero?style=brands" class=" "><i class="iconclick fab fa-creative-commons-zero" style="font-size: 48px;"></i></a> 
+          
+            
+         </div>
+      </div>
+   </div>
+
+                                            </li>
+
+
+
+
+
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div id="contact-2" class="tab-pane">
+
+                        </div>
+                        <div id="contact-3" class="tab-pane">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-background"></div>
+<div id="modal-content">
+    <div class="form-inline">
+        <button id="modal-close" class="btn btn-success" type="button"><i class="iconclick fa fa-window-close"></i></button>
+    </div>
+    <iframe id="viewContent" src="" width="100%" height="90%"></iframe>
+</div>
+
+@section Styles {
+
+    <link href="~/lib/iCheck/custom.css" rel="stylesheet" />
+    <link href="~/lib/sweetalert/dist/sweetalert.css" rel="stylesheet" />
+@*<style>
+    ul {
+        list-style: none;
+    }
+
+        ul li::before {
+            content: "\2022";
+            color: #702fa0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+</style>*@
+
+}
+
+@section Scripts {
+    <script src="~/lib/iCheck/icheck.min.js"></script>
+    <script src="~/lib/sweetalert/dist/sweetalert.min.js"></script>
+   
+    <script type="text/javascript">
+
+        var controller = '@ViewContext.RouteData.Values["controller"].ToString()';
+
+
+        var Client = {};
+        var ClientId = '@Model.ClientId';
+
+        var topscroll = 0;
+
+        console.log(ClientId);
+
+        $(document.body).on("click", ".client-link", function (e) {
+            e.preventDefault()
+            $(".selected .tab-pane").removeClass('active');
+            $($(this).attr('href')).addClass("active");
+
+           
+
+        });
+
+
+
+        $(document).ready(function () {
+
+             $(".CambioIconos").click(function(){
+             
+                $(".iconos").toggle();
+
+                   
+             });             
+
+         
+           $(".iconclick").click(function(){
+             
+                        
+
+                var x = $(this).attr("class").replace("iconclick","");
+                console.log(x);
+
+                $("#Icono").val(x);
+
+                $("#IconShow").html("<i class='"+x+"' style='font-size: 60px;'></i>" );
+                    $(".iconos").toggle();
+                });   
+
+            $("#modal-content,#modal-background").hide();
+            $('.btn-search').keyup(function () {
+
+                var searchText = $(this).val().toLowerCase();
+
+                $('.rowclient').each(function () {
+
+                    var currentLiText = $(this).text().toLowerCase(),
+                        showCurrentLi = currentLiText.indexOf(searchText) !== -1;
+
+                    $(this).toggle(showCurrentLi);
+
+                });
+            });
+
+            $(".btnBuscar").click(function () {
+
+                var text = $('.btn-search').val()
+                if (text == '') {
+                    swal({
+                        title: "Aviso",
+                        text: "Para buscar debe ingresar un registro"
+                    });
+                }
+                else {
+
+                    $('.btn-search').keyup();
+                }
+
+            });
+
+            $(".ReadclientData").click(function(){
+
+                var client = $(this).data("id");
+                llamarApiUsuario(client);
+
+            });
+
+
+
+
+
+            $(".modal-launcher, #modal-background, #modal-close").click(function () {
+
+
+
+                    var url = $(this).data("url");
+                    var iframe = document.getElementById("viewContent");
+
+                    if ($('#modal-content:visible').length == 0) {
+                        iframe.src = url + "/" + Client.ClientId + "?" + (new Date().getTime());
+                        topscroll = $(window).scrollTop();
+                        $(window).scrollTop(0);
+                    }
+                    else {
+                        iframe.src = "";
+                        llamarApiUsuario(Client.ClientId);
+                        $(window).scrollTop(topscroll);
+                    }
+
+                    $("#modal-content,#modal-background").toggle();
+
+
+
+
+            });
+
+            //Id ya buscado
+            if (ClientId != "") {
+                console.log("click save client")
+                $(".client-" + ClientId).click();
+            }
+        });
+
+
+     
+
+
+        function CargarPersona(object)
+        {
+            if(object == null)
+            {
+                return ;
+            }
+            Client = object;
+            console.log(Client);
+
+            
+            
+            $("#jsonNombre").html(object.nombre);
+            
+             
+            $("#ClientId").val(object.clientId);
+
+            $("#TimeOut").val(object.timeOut);
+            
+            $("#Descripcion").val(object.descripcion);
+
+            setTimeout(function(){
+                
+                  if(object.icono == "" || object.icono == null )
+           {
+               $("#IconShow").html( "<i class='far fa-user' style='font-size: 60px;'></i>" );
+              
+           }
+           else
+
+           {
+                  $("#IconShow").html( "<i class='"+object.icono+"' style='font-size: 60px;'></i>" );
+           }}  , 1000)
+
+
+
+
+            
+ 
+
+            
+
+            $("#contact-1").addClass("active")
+
+            
+        }
+
+        function llamarApiUsuario(clientid) {
+
+            if (clientid != null) {
+                var json = {};
+                json.ClientId = clientid;
+
+                $.ajax
+                    ({
+                        type: "POST",
+                        url: '@IST.RRHH.Web.AppConfig.UrlWeb' + '/' + controller + "/clientdata",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        dataType: 'json',
+                        async: true,
+                        data: json,
+                        success: function (obj) {
+                            CargarPersona(obj)
+                        }
+                    })
+            }
+        }
+
+    </script>
+
+}

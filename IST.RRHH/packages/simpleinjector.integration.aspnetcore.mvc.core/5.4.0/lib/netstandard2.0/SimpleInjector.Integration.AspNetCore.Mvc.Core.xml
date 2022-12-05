@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleInjector.Integration.AspNetCore.Mvc.Core</name>
+    </assembly>
+    <members>
+        <member name="T:SimpleInjector.SimpleInjectorAspNetCoreBuilderMvcCoreExtensions">
+            <summary>
+            Extension methods for <see cref="T:SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder"/> that allow integrating
+            Simple Injector with ASP.NET Core MVC controllers.
+            </summary>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreBuilderMvcCoreExtensions.AddControllerActivation(SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder)">
+            <summary>
+            Registers all application's controllers in Simple Injector and instructs ASP.NET Core to let
+            Simple Injector create those controllers. Those controllers will be registered using the
+            <see cref="F:SimpleInjector.Lifestyle.Transient"/> lifestyle, unless this is overridden using a custom
+            <see cref="P:SimpleInjector.ContainerOptions.DefaultLifestyle">DefaultLifestyle</see> or by overriding the default 
+            <see cref="P:SimpleInjector.ContainerOptions.LifestyleSelectionBehavior">LifestyleSelectionBehavior</see>.
+            </summary>
+            <param name="builder">The builder instance.</param>
+            <returns>The supplied <paramref name="builder"/> instance.</returns>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorAspNetCoreBuilderMvcCoreExtensions.AddControllerActivation(SimpleInjector.Integration.AspNetCore.SimpleInjectorAspNetCoreBuilder,SimpleInjector.Lifestyle)">
+            <summary>
+            Registers all application's controllers in Simple Injector and instructs ASP.NET Core to let
+            Simple Injector create those controllers. Those controllers will be registered using the supplied
+            <paramref name="lifestyle"/>.
+            </summary>
+            <param name="builder">The builder instance.</param>
+            <param name="lifestyle">The lifestyle used for registering the controllers.</param>
+            <returns>The supplied <paramref name="builder"/> instance.</returns>
+        </member>
+        <member name="T:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorControllerActivator">
+            <summary>Controller activator for Simple Injector.</summary>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorControllerActivator.#ctor(SimpleInjector.Container)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorControllerActivator"/> class.
+            </summary>
+            <param name="container">The container instance.</param>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorControllerActivator.Create(Microsoft.AspNetCore.Mvc.ControllerContext)">
+            <summary>Creates a controller.</summary>
+            <param name="context">The Microsoft.AspNet.Mvc.ActionContext for the executing action.</param>
+            <returns>A new controller instance.</returns>
+        </member>
+        <member name="M:SimpleInjector.Integration.AspNetCore.Mvc.SimpleInjectorControllerActivator.Release(Microsoft.AspNetCore.Mvc.ControllerContext,System.Object)">
+            <summary>Releases the controller.</summary>
+            <param name="context">The Microsoft.AspNet.Mvc.ActionContext for the executing action.</param>
+            <param name="controller">The controller instance.</param>
+        </member>
+    </members>
+</doc>

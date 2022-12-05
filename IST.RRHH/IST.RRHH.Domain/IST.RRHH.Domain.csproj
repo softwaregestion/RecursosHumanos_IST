@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{46788585-D4C9-484C-885A-1A5A499C0E04}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IST.RRHH.Domain</RootNamespace>
+    <AssemblyName>IST.RRHH.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.3, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.3\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SendGrid, Version=9.28.1.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.9.28.1\lib\net452\SendGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=4.8.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.8.1\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="StarkbankEcdsa, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b2e6337a5d77bfbc, processorArchitecture=MSIL">
+      <HintPath>..\packages\starkbank-ecdsa.1.3.3\lib\net452\StarkbankEcdsa.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.0.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BD\Command\ApiClaims\Create.cs" />
+    <Compile Include="BD\Command\ApiClaims\Delete.cs" />
+    <Compile Include="BD\Command\ApiClaims\Edit.cs" />
+    <Compile Include="BD\Command\ApiProperties\Create.cs" />
+    <Compile Include="BD\Command\ApiProperties\Delete.cs" />
+    <Compile Include="BD\Command\ApiProperties\Edit.cs" />
+    <Compile Include="BD\Command\ApiResources\Create.cs" />
+    <Compile Include="BD\Command\ApiResources\Delete.cs" />
+    <Compile Include="BD\Command\ApiResources\Edit.cs" />
+    <Compile Include="BD\Command\ApiScopeClaims\Create.cs" />
+    <Compile Include="BD\Command\ApiScopeClaims\Delete.cs" />
+    <Compile Include="BD\Command\ApiScopeClaims\Edit.cs" />
+    <Compile Include="BD\Command\ApiScopes\Create.cs" />
+    <Compile Include="BD\Command\ApiScopes\Delete.cs" />
+    <Compile Include="BD\Command\ApiScopes\Edit.cs" />
+    <Compile Include="BD\Command\ApiSecrets\Create.cs" />
+    <Compile Include="BD\Command\ApiSecrets\Delete.cs" />
+    <Compile Include="BD\Command\ApiSecrets\Edit.cs" />
+    <Compile Include="BD\Command\AspNetRoleClaims\Create.cs" />
+    <Compile Include="BD\Command\AspNetRoleClaims\Delete.cs" />
+    <Compile Include="BD\Command\AspNetRoleClaims\Edit.cs" />
+    <Compile Include="BD\Command\AspNetRoleClaims\EditEstados.cs" />
+    <Compile Include="BD\Command\AspNetRoles\Create.cs" />
+    <Compile Include="BD\Command\AspNetRoles\Delete.cs" />
+    <Compile Include="BD\Command\AspNetRoles\Edit.cs" />
+    <Compile Include="BD\Command\AspNetUserClaims\Create.cs" />
+    <Compile Include="BD\Command\AspNetUserClaims\Delete.cs" />
+    <Compile Include="BD\Command\AspNetUserClaims\Edit.cs" />
+    <Compile Include="BD\Command\AspNetUserClaims\EditByUserTypeValue.cs" />
+    <Compile Include="BD\Command\AspNetUserLogins\Create.cs" />
+    <Compile Include="BD\Command\AspNetUserLogins\Delete.cs" />
+    <Compile Include="BD\Command\AspNetUserLogins\Edit.cs" />
+    <Compile Include="BD\Command\AspNetUserRoles\Create.cs" />
+    <Compile Include="BD\Command\AspNetUserRoles\Delete.cs" />
+    <Compile Include="BD\Command\AspNetUserRoles\Edit.cs" />
+    <Compile Include="BD\Command\AspNetUsers\Create.cs" />
+    <Compile Include="BD\Command\AspNetUsers\Delete.cs" />
+    <Compile Include="BD\Command\AspNetUsers\Edit.cs" />
+    <Compile Include="BD\Command\AspNetUserTokens\Create.cs" />
+    <Compile Include="BD\Command\AspNetUserTokens\Delete.cs" />
+    <Compile Include="BD\Command\AspNetUserTokens\Edit.cs" />
+    <Compile Include="BD\Command\Cargo\Create.cs" />
+    <Compile Include="BD\Command\Cargo\Delete.cs" />
+    <Compile Include="BD\Command\Cargo\Edit.cs" />
+    <Compile Include="BD\Command\ClientClaims\Create.cs" />
+    <Compile Include="BD\Command\ClientClaims\Delete.cs" />
+    <Compile Include="BD\Command\ClientClaims\Edit.cs" />
+    <Compile Include="BD\Command\ClientClaims\EditByClientTypeValue.cs" />
+    <Compile Include="BD\Command\ClientCorsOrigins\Create.cs" />
+    <Compile Include="BD\Command\ClientCorsOrigins\Delete.cs" />
+    <Compile Include="BD\Command\ClientCorsOrigins\Edit.cs" />
+    <Compile Include="BD\Command\ClientGrantTypes\Create.cs" />
+    <Compile Include="BD\Command\ClientGrantTypes\Delete.cs" />
+    <Compile Include="BD\Command\ClientGrantTypes\Edit.cs" />
+    <Compile Include="BD\Command\ClientIdPRestrictions\Create.cs" />
+    <Compile Include="BD\Command\ClientIdPRestrictions\Delete.cs" />
+    <Compile Include="BD\Command\ClientIdPRestrictions\Edit.cs" />
+    <Compile Include="BD\Command\ClientPostLogoutRedirectUris\Create.cs" />
+    <Compile Include="BD\Command\ClientPostLogoutRedirectUris\Delete.cs" />
+    <Compile Include="BD\Command\ClientPostLogoutRedirectUris\Edit.cs" />
+    <Compile Include="BD\Command\ClientProperties\Create.cs" />
+    <Compile Include="BD\Command\ClientProperties\Delete.cs" />
+    <Compile Include="BD\Command\ClientProperties\Edit.cs" />
+    <Compile Include="BD\Command\ClientRedirectUris\Create.cs" />
+    <Compile Include="BD\Command\ClientRedirectUris\Delete.cs" />
+    <Compile Include="BD\Command\ClientRedirectUris\Edit.cs" />
+    <Compile Include="BD\Command\ClientScopes\Create.cs" />
+    <Compile Include="BD\Command\ClientScopes\Delete.cs" />
+    <Compile Include="BD\Command\ClientScopes\Edit.cs" />
+    <Compile Include="BD\Command\ClientSecrets\Create.cs" />
+    <Compile Include="BD\Command\ClientSecrets\Delete.cs" />
+    <Compile Include="BD\Command\ClientSecrets\Edit.cs" />
+    <Compile Include="BD\Command\Clients\Create.cs" />
+    <Compile Include="BD\Command\Clients\Delete.cs" />
+    <Compile Include="BD\Command\Clients\Edit.cs" />
+    <Compile Include="BD\Command\DeviceCodes\Create.cs" />
+    <Compile Include="BD\Command\DeviceCodes\Delete.cs" />
+    <Compile Include="BD\Command\DeviceCodes\Edit.cs" />
+    <Compile Include="BD\Command\EnvioEmail\Create.cs" />
+    <Compile Include="BD\Command\EnvioEmail\Delete.cs" />
+    <Compile Include="BD\Command\EnvioEmail\Edit.cs" />
+    <Compile Include="BD\Command\IdentityClaims\Create.cs" />
+    <Compile Include="BD\Command\IdentityClaims\Delete.cs" />
+    <Compile Include="BD\Command\IdentityClaims\Edit.cs" />
+    <Compile Include="BD\Command\IdentityProperties\Create.cs" />
+    <Compile Include="BD\Command\IdentityProperties\Delete.cs" />
+    <Compile Include="BD\Command\IdentityProperties\Edit.cs" />
+    <Compile Include="BD\Command\IdentityResources\Create.cs" />
+    <Compile Include="BD\Command\IdentityResources\Delete.cs" />
+    <Compile Include="BD\Command\IdentityResources\Edit.cs" />
+    <Compile Include="BD\Command\ParametricaApp\Create.cs" />
+    <Compile Include="BD\Command\ParametricaApp\Delete.cs" />
+    <Compile Include="BD\Command\ParametricaApp\Edit.cs" />
+    <Compile Include="BD\Command\PersistedGrants\Create.cs" />
+    <Compile Include="BD\Command\PersistedGrants\Delete.cs" />
+    <Compile Include="BD\Command\PersistedGrants\Edit.cs" />
+    <Compile Include="BD\Command\TipoNotificacion\Create.cs" />
+    <Compile Include="BD\Command\TipoNotificacion\Delete.cs" />
+    <Compile Include="BD\Command\TipoNotificacion\Edit.cs" />
+    <Compile Include="BD\Command\UsuarioTipoNotificacion\Create.cs" />
+    <Compile Include="BD\Command\UsuarioTipoNotificacion\Delete.cs" />
+    <Compile Include="BD\Command\UsuarioTipoNotificacion\Edit.cs" />
+    <Compile Include="BD\Query\ApiClaims\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ApiClaims\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ApiClaims\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ApiProperties\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ApiProperties\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ApiProperties\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ApiResources\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ApiResources\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ApiResources\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ApiScopeClaims\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ApiScopeClaims\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ApiScopeClaims\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ApiScopes\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ApiScopes\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ApiScopes\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ApiSecrets\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ApiSecrets\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ApiSecrets\Index\GetAll.cs" />
+    <Compile Include="BD\Query\AspNetRoleClaims\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetRoleClaims\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetRoleClaims\Index\GetAll.cs" />
+    <Compile Include="BD\Query\AspNetRoles\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetRoles\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetRoles\Index\GetAll.cs" />
+    <Compile Include="BD\Query\AspNetUserClaims\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetUserClaims\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetUserClaims\Index\GetAll.cs" />
+    <Compile Include="BD\Query\AspNetUserClaims\Index\GetAllByClaimType.cs" />
+    <Compile Include="BD\Query\AspNetUserClaims\Index\GetAllByClaimValue.cs" />
+    <Compile Include="BD\Query\AspNetUserClaims\Index\GetAllByNotClaimValue.cs" />
+    <Compile Include="BD\Query\AspNetUserClaims\Index\GetAllByUserId.cs" />
+    <Compile Include="BD\Query\AspNetUserClaims\Index\GetAllByUserIdxRol.cs" />
+    <Compile Include="BD\Query\AspNetUserClaims\Index\GetAllByUsersId.cs" />
+    <Compile Include="BD\Query\AspNetUserLogins\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetUserLogins\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetUserLogins\Index\GetAll.cs" />
+    <Compile Include="BD\Query\AspNetUserRoles\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetUserRoles\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetUserRoles\Index\GetAll.cs" />
+    <Compile Include="BD\Query\AspNetUsers\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetUsers\Details\GetSingleItemByUserName.cs" />
+    <Compile Include="BD\Query\AspNetUsers\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetUsers\Index\GetAll.cs" />
+    <Compile Include="BD\Query\AspNetUsers\Index\GetAllByIds.cs" />
+    <Compile Include="BD\Query\AspNetUsers\Index\GetAllUserChildByUserId.cs" />
+    <Compile Include="BD\Query\AspNetUserTokens\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetUserTokens\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\AspNetUserTokens\Index\GetAll.cs" />
+    <Compile Include="BD\Query\Cargo\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\Cargo\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\Cargo\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ClientClaims\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientClaims\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientClaims\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ClientClaims\Index\GetAllByClientId.cs" />
+    <Compile Include="BD\Query\ClientCorsOrigins\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientCorsOrigins\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientCorsOrigins\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ClientGrantTypes\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientGrantTypes\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientGrantTypes\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ClientIdPRestrictions\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientIdPRestrictions\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientIdPRestrictions\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ClientPostLogoutRedirectUris\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientPostLogoutRedirectUris\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientPostLogoutRedirectUris\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ClientProperties\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientProperties\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientProperties\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ClientRedirectUris\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientRedirectUris\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientRedirectUris\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ClientScopes\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientScopes\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientScopes\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ClientSecrets\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientSecrets\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ClientSecrets\Index\GetAll.cs" />
+    <Compile Include="BD\Query\Clients\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\Clients\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\Clients\Index\GetAll.cs" />
+    <Compile Include="BD\Query\Clients\Index\GetAllByIds.cs" />
+    <Compile Include="BD\Query\Clients\Index\GetAllCountUser.cs" />
+    <Compile Include="BD\Query\DeviceCodes\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\DeviceCodes\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\DeviceCodes\Index\GetAll.cs" />
+    <Compile Include="BD\Query\EnvioEmail\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\EnvioEmail\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\EnvioEmail\Index\GetAll.cs" />
+    <Compile Include="BD\Query\EnvioEmail\Index\GetAllId.cs" />
+    <Compile Include="BD\Query\IdentityClaims\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\IdentityClaims\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\IdentityClaims\Index\GetAll.cs" />
+    <Compile Include="BD\Query\IdentityProperties\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\IdentityProperties\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\IdentityProperties\Index\GetAll.cs" />
+    <Compile Include="BD\Query\IdentityResources\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\IdentityResources\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\IdentityResources\Index\GetAll.cs" />
+    <Compile Include="BD\Query\ParametricaApp\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ParametricaApp\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\ParametricaApp\Index\GetAll.cs" />
+    <Compile Include="BD\Query\PersistedGrants\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\PersistedGrants\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\PersistedGrants\Index\GetAll.cs" />
+    <Compile Include="BD\Query\TipoNotificacion\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\TipoNotificacion\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\TipoNotificacion\Index\GetAll.cs" />
+    <Compile Include="BD\Query\UsuarioTipoNotificacion\Details\GetSingleItem.cs" />
+    <Compile Include="BD\Query\UsuarioTipoNotificacion\Edit\GetSingleItem.cs" />
+    <Compile Include="BD\Query\UsuarioTipoNotificacion\Index\GetAll.cs" />
+    <Compile Include="BusinessException.cs" />
+    <Compile Include="CQRS\Command\_Plantilla_\Create.cs" />
+    <Compile Include="CQRS\Command\_Plantilla_\Delete.cs" />
+    <Compile Include="CQRS\Command\_Plantilla_\Edit.cs" />
+    <Compile Include="CQRS\Query\AspNetUserClaims\GetSingleClaims.cs" />
+    <Compile Include="CQRS\Query\_Plantilla_\Details\GetSingleItem.cs" />
+    <Compile Include="CQRS\Query\_Plantilla_\Edit\GetSingleItem.cs" />
+    <Compile Include="CQRS\Query\_Plantilla_\Index\GetAll.cs" />
+    <Compile Include="Jobs\CrearEmailJobs.cs" />
+    <Compile Include="Jobs\EnviarEmailJobs.cs" />
+    <Compile Include="Jobs\ProcesarEmailJobs.cs" />
+    <Compile Include="Mediator.cs" />
+    <Compile Include="ProcedureStore\GetSp_Widget_1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Utilidades\Email.cs" />
+    <Compile Include="Utilidades\Enum.cs" />
+    <Compile Include="Utilidades\IServicio.cs" />
+    <Compile Include="Utilidades\LlamarSpHelper.cs" />
+    <Compile Include="Utilidades\ParameterVariables.cs" />
+    <Compile Include="Utilidades\Rut.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IST.RRHH.Model\IST.RRHH.Model.csproj">
+      <Project>{b78844e9-f36b-4526-b921-916b4ec2d429}</Project>
+      <Name>IST.RRHH.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

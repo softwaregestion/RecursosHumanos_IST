@@ -1,0 +1,92 @@
+@model IST.RRHH.Web.Models.TipoNotificacionViewModel
+
+
+@section Styles {
+    <link href="~/lib//tag-it/css/jquery.tagit.css" rel="stylesheet" />
+    <link href="~/lib/summernote/dist/summernote-lite.css" rel="stylesheet" />
+
+
+    <style>
+        .w-100px {
+            width: 130px !important;
+        }
+    </style>
+}
+@section Scripts {
+    <script src="~/lib/jquery-migrate/dist/jquery-migrate.min.js"></script>
+    <script src="~/lib/tag-it/js/tag-it.min.js"></script>
+    <script src="~/lib/summernote/dist/summernote-lite.min.js"></script>
+    <script src="~/js/demo/email-compose.demo.js"></script>
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-12">
+        <h2>Editar Tipo de Notificacion</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("Index", "TipoNotificacion")" style="color: #702fa0">Tipo de Notificacion</a>
+            </li>
+            <li class="active breadcrumb-item">
+                <strong>Editar Tipo de Notificacion</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="mailbox">
+    <!-- BEGIN mailbox-toolbar -->
+    @using (Html.BeginForm("Edit", "TipoNotificacion", FormMethod.Post))
+    {
+        @Html.HiddenFor(d => d.TipoNotificacionId)
+        <div class="mailbox-toolbar">
+            <div class="mailbox-toolbar-item"><span class="mailbox-toolbar-text">Editar registro</span></div>
+            <div class="mailbox-toolbar-item"><button class="btn btn-sm" style="margin-top: -2px; background-color: #702fa0; color: white">Editar</button></div>
+            @*<div class="mailbox-toolbar-item"><a href="#" class="mailbox-toolbar-link">Attachment</a></div>
+                <div class="mailbox-toolbar-item"><a asp-controller="Email" asp-action="Inbox" class="mailbox-toolbar-link">Discard</a></div>
+                <div class="mailbox-toolbar-item dropdown">
+                    <a href="#" class="mailbox-toolbar-link" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
+                    <div class="dropdown-menu ms-n1">
+                        <a href="#" class="dropdown-item">Save draft</a>
+                        <a href="#" class="dropdown-item">Show From</a>
+                        <a href="#" class="dropdown-item">Check names</a>
+                        <a href="#" class="dropdown-item">Set importance</a>
+                        <a href="#" class="dropdown-item">Switch to plain text</a>
+                        <a href="#" class="dropdown-item">Check for accessibility issues</a>
+                    </div>
+                </div>
+                <div class="mailbox-toolbar-item ms-auto"><a href="#" class="mailbox-toolbar-link"><i class="fa fa-redo fa-fw fs-12px me-1"></i> Undo</a></div>*@
+            @*<div class="mailbox-toolbar-item ms-auto"><a asp-controller="TipoNotificacion" asp-action="Index" class="mailbox-toolbar-link"><i class="fa fa-times fa-fw"></i> Cancelar</a></div>*@
+        </div>
+        <!-- END mailbox-toolbar -->
+        <!-- BEGIN mailbox-body -->
+        <div class="mailbox-body">
+            <div class="mailbox-content">
+                <!-- BEGIN scrollbar -->
+                <div data-scrollbar="true" data-height="100%" data-skip-mobile="true">
+                    <div class="mailbox-form">
+                        <form action="#" method="POST" name="email_form">
+                            <div class="mailbox-form-header">
+                                <div class="row p-1">
+                                    <label class="col-form-label w-100px ps-2 pe-2 fw-500 text-end">Nombre:</label>
+                                    <div class="col">
+                                        @Html.TextBoxFor(d => d.Nombre, new { @class = "form-control", @placeholder = "Nombre" })
+                                        @*<input type="text" class="form-control" placeholder="Identificación" />*@
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                            <textarea name="ContenidoPlantilla" class="summernote form-control" title="Contents">@Model.ContenidoPlantilla</textarea>
+                        </form>
+                    </div>
+                </div>
+                <!-- END scrollbar -->
+            </div>
+        </div>
+        <!-- END mailbox-body -->
+    }
+
+</div>

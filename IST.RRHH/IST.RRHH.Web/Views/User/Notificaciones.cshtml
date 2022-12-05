@@ -1,0 +1,342 @@
+﻿@model IST.RRHH.Web.Models.UserIndexModel
+@{
+    ViewBag.Title = "Autorización de usuarios";
+}
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Notificaciones a usuarios</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("Index", "Home")">Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a>Usuarios</a>
+            </li>
+            <li class="active breadcrumb-item">
+                <strong>Notificaciones a usuarios</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="ibox">
+                <div class="ibox-content">
+
+
+                    <h2>Usuarios</h2>
+
+                    <div class="input-group">
+                        <input type="text" placeholder="Buscar Usuario... " class="input form-control btn-search ">
+
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn btn-primary btnBuscar"> <i class="fa fa-search"></i> Buscar</button>
+                        </span>
+                    </div>
+                    <div class="clients-list">
+
+
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="">
+                                    <div class="table-responsive">
+
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                @if (Model.Items != null && Model.Items.Count > 0)
+                                                {
+                                                    foreach (var item in Model.Items)
+                                                    {
+                                                        var activo = "";
+
+
+                                                        <tr class="col-md-12 @activo rowUser">
+                                                            <td class="text-center user-@item.UserId ReadUserData" data-id="@item.UserId" style="width:250px">
+
+                                                                <span class="font-weight-bold"><i class="fa fa-user"></i></span>
+                                                                <br />
+                                                                <a href="#" class="client-link ReadUserData  " data-id="@item.UserId">
+                                                                    @item.Nombres
+                                                                </a>
+                                                                <br />
+                                                                <span class="label label-primary">@item.Rol</span>
+
+
+                                                            </td>
+                                                            <td class="ReadUserData" data-id="@item.UserId" style="width:250px">
+                                                                <ul>
+                                                                    <li title="Email">  <i class="fa fa-envelope"> </i> @item.Email</li>
+                                                                    <li title="Fecha solicitante"> <i class="fa fa-calendar"> </i> @item.Fecha</li>
+                                                                    <li title="Rol"> <i class="fa fa-user"> </i> @item.Rol</li>
+                                                                    @if (item.Activo != true)
+                                                                    {
+                                                                        <li title="estado"> <i class="fa fa-close"> </i>no vigente</li>
+                                                                    }
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <tr class="col-md-12 ReadUserData">
+                                                        <td> Sin registros para la consulta.</td>
+                                                    </tr>
+                                                }
+
+
+
+
+                                            </tbody>
+                                        </table>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="ibox selected">
+
+                <div class="ibox-content">
+                    <div class="tab-content">
+                        <div id="contact-1" class="tab-pane ">
+                            <h3>Notificaciones al usuario</h3>
+                            <hr />
+                            <ul id="ulnotificaciones" class="list-group"></ul>
+
+                        </div>
+                        <div id="contact-2" class="tab-pane">
+
+                        </div>
+                        <div id="contact-3" class="tab-pane">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-background"></div>
+<div id="modal-content">
+    <div class="form-inline">
+        <button id="modal-close" class="btn btn-success" type="button"><i class="fa fa-window-close"></i></button>
+    </div>
+    <iframe id="viewContent" src="" width="100%" height="90%"></iframe>
+</div>
+
+@section Styles {
+    <link href="~/lib/iCheck/custom.css" rel="stylesheet" />
+    <link href="~/lib/sweetalert/dist/sweetalert.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/lib/iCheck/icheck.min.js"></script>
+    <script src="~/lib/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+
+        var controller = '@ViewContext.RouteData.Values["controller"].ToString()';
+
+
+        var User = {};
+        var UserId = '@Model.UserId';
+
+        var topscroll = 0;
+
+        console.log(UserId);
+
+        $(document.body).on("click", ".client-link", function (e) {
+            e.preventDefault()
+            $(".selected .tab-pane").removeClass('active');
+            $($(this).attr('href')).addClass("active");
+        });
+
+
+
+        $(document).ready(function () {
+
+            $('.btn-search').keyup(function () {
+
+                var searchText = $(this).val().toLowerCase();
+
+                $('.rowUser').each(function () {
+
+                    var currentLiText = $(this).text().toLowerCase(),
+                        showCurrentLi = currentLiText.indexOf(searchText) !== -1;
+
+                    $(this).toggle(showCurrentLi);
+
+                });
+            });
+
+            $(".btnBuscar").click(function () {
+
+                var text = $('.btn-search').val()
+                if (text == '') {
+                    swal({
+                        title: "Aviso",
+                        text: "Para buscar debe ingresar un registro"
+                    });
+                }
+                else {
+
+                    $('.btn-search').keyup();
+                }
+
+            });
+
+            $(".ReadUserData").click(function(){
+
+                var user = $(this).data("id");
+                llamarApiUsuario(user);
+
+            });
+
+            $(".changeCliente").change(function () {
+
+                var clienteId = $(this).val();
+
+                CargarContrato(clienteId, User.ContratoId);
+
+            });
+
+            $("#ddlClientesEventx").change(function () {
+
+                $("#btnCliente").click();
+            })
+
+
+
+            $(".modal-launcher, #modal-background, #modal-close").click(function () {
+
+                if (User.ClienteId == 0) {
+
+                    swal({
+                        title: "Aviso",
+                        text: "No se ha grabado un cliente para este usuario"
+                    });
+
+                }
+                else if ($("#ClienteId").val() != User.ClienteId && User.ClienteId > 0) {
+
+                    swal({
+                        title: "Se ha cambiado al cliente?",
+                        text: "Esto conllevará a que se eliminen los registros relacionados a este cliente, desea continuar?",
+                        type: "aviso",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Si",
+                        cancelButtonText: "No",
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    },
+                        function (isConfirm) {
+                            if (isConfirm) {
+
+                            } else {
+
+                            }
+                        });
+
+                }
+                else {
+
+                    var url = $(this).data("url");
+                    var iframe = document.getElementById("viewContent");
+
+                    if ($('#modal-content:visible').length == 0) {
+                        iframe.src = url + "/" + User.UserId + "?" + (new Date().getTime());
+                        topscroll = $(window).scrollTop();
+                        $(window).scrollTop(0);
+                    }
+                    else {
+                        iframe.src = "";
+                        llamarApiUsuario(User.UserId);
+                        $(window).scrollTop(topscroll);
+                    }
+
+                    $("#modal-content,#modal-background").toggle();
+
+                }
+
+
+            });
+
+            //Id ya buscado
+            if (UserId != "") {
+                console.log("click save user")
+                $(".user-" + UserId).click();
+            }
+        });
+
+
+
+        function CargarLista(ul, data) {
+
+            var obj = $(ul);
+            obj.find('li').remove().end();
+            if (data.length > 0) {
+                for (var i = 0; i < data.length; i++) {
+
+                    var elementData = data[i];
+                    obj.append('<li class="list-group-item fist-item"><i class="fa fa-calendar"></i>' + elementData.Fecha + '<i class="fa fa-user"></i>' + elementData.TipoNotificacion + '<i class="fa fa-envelope"></i>'+ elementData.Mensaje + '</li>')
+
+                }
+            }
+            else {
+
+                obj.append('<li class="list-group-item fist-item">Sin Notificaciones</li>')
+            }
+
+        }
+
+        function CargarPersona(object)
+        {
+
+            CargarLista("#ulnotificaciones", User)
+
+
+            $("#contact-1").addClass("active")
+
+        }
+
+        function llamarApiUsuario(user) {
+
+            if (user != null) {
+                var json = {};
+                json.UserId = user;
+
+                $.ajax
+                    ({
+                        type: "POST",
+                        url: '/' + controller + "/usernotificaciones",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        dataType: 'json',
+                        async: true,
+                        data: json,
+                        success: function (obj) {
+                            CargarPersona(obj)
+                        }
+                    })
+            }
+        }
+
+    </script>
+
+}

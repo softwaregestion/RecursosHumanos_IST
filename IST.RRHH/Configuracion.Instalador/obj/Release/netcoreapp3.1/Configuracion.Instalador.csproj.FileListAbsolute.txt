@@ -1,0 +1,10 @@
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\Configuracion.Instalador\bin\Release\netcoreapp3.1\Configuracion.Instalador.deps.json
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\Configuracion.Instalador\bin\Release\netcoreapp3.1\Configuracion.Instalador.dll
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\Configuracion.Instalador\bin\Release\netcoreapp3.1\Configuracion.Instalador.pdb
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\Configuracion.Instalador\obj\Release\netcoreapp3.1\Configuracion.Instalador.csproj.AssemblyReference.cache
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\Configuracion.Instalador\obj\Release\netcoreapp3.1\Configuracion.Instalador.GeneratedMSBuildEditorConfig.editorconfig
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\Configuracion.Instalador\obj\Release\netcoreapp3.1\Configuracion.Instalador.AssemblyInfoInputs.cache
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\Configuracion.Instalador\obj\Release\netcoreapp3.1\Configuracion.Instalador.AssemblyInfo.cs
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\Configuracion.Instalador\obj\Release\netcoreapp3.1\Configuracion.Instalador.csproj.CoreCompileInputs.cache
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\Configuracion.Instalador\obj\Release\netcoreapp3.1\Configuracion.Instalador.dll
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\Configuracion.Instalador\obj\Release\netcoreapp3.1\Configuracion.Instalador.pdb
