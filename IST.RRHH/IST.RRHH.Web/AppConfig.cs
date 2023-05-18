@@ -13,6 +13,7 @@
         public static string rootSSO = Configuracion.Instalador.Contexto.GetSSO();// "https://localhost:44320/";
 
         public static string UrlWeb = Configuracion.Instalador.Contexto.GetWeb();//"https://localhost:44322";
+        public static string UrlRecovery = Configuracion.Instalador.Contexto.GetWebRecovery();//"https://localhost:44322";
         public static string ManagerApi = Configuracion.Instalador.Contexto.GetApi() + "/";//" "https://localhost:44321/";
 
         public static bool RequireHttpsMetadata = false;

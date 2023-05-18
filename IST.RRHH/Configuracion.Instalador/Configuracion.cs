@@ -84,6 +84,25 @@ namespace Configuracion.Instalador
                     throw new Exception("Error");
             }
         }
+
+        public static string GetWebRecovery()
+        {
+            switch (QueEjecutar)
+            {
+                case Entorno.Produccion:
+                    return "https://adherentes.ist.cl/acceso/web";
+
+                case Entorno.QA:
+                    return "https://adherentes.ist.cl/acceso/web";
+
+                case Entorno.Localhost:
+                    return "https://localhost:44322";
+
+                default:
+                    throw new Exception("Error");
+            }
+        }
+
         public static string GetSecret()
         {
             return "Lmil2JopJBz-GH5tDioogcog";

@@ -677,3 +677,4 @@ D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Web\obj\Debug\netcoreapp3.
 D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Web\obj\Debug\netcoreapp3.1\IST.RRHH.Web.dll
 D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Web\obj\Debug\netcoreapp3.1\IST.RRHH.Web.pdb
 D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Web\obj\Debug\netcoreapp3.1\IST.RRHH.Web.genruntimeconfig.cache
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.RRHH.Web\obj\Debug\netcoreapp3.1\Razor\Views\Whatsapp\Index.cshtml.g.cs

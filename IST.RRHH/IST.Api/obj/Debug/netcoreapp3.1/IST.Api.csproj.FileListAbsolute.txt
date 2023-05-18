@@ -156,3 +156,4 @@ D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.Api\obj\Debug\netcoreapp3.1\IST
 D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.Api\obj\Debug\netcoreapp3.1\IST.Api.dll
 D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.Api\obj\Debug\netcoreapp3.1\IST.Api.pdb
 D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.Api\obj\Debug\netcoreapp3.1\IST.Api.genruntimeconfig.cache
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.Api\bin\Debug\netcoreapp3.1\App_Data\TemplateWsp\template.json

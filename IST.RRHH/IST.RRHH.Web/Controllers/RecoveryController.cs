@@ -67,10 +67,6 @@ namespace IST.RRHH.Web.Controllers
                 return View(model);
             }
 
-
-
-
-
             var data = await context.AspNetUsers.FirstOrDefaultAsync(c => c.Email == model.Email.ToLower());
             if (data == null)
             {
@@ -109,11 +105,11 @@ namespace IST.RRHH.Web.Controllers
 
               
                 var mensaje = string.Format(@"Sr/a, {0}
-                                                                            <br/><br/> 
-                                                                            Se ha solicitado la recuperación de su contraseña,  para continuar haga click en el siguiente <a href='" + AppConfig.UrlWeb + @"/recovery/recoverynewpassword/{2}?recoveryid={1}'>enlace</a>  <br/><br/> 
-                                                                            El código de validación es: <strong> {3} </strong>                                                                            
-                                                                            <br/><br/> 
-                                                                            <strong>No responder mail generado automaticamente.</strong>  
+                    <br/><br/> 
+                    Se ha solicitado la recuperación de su contraseña,  para continuar haga click en el siguiente <a href='" + AppConfig.UrlSSO + @"/recovery/recoverynewpassword/{2}?recoveryid={1}'>enlace</a>  <br/><br/> 
+                    El código de validación es: <strong> {3} </strong>                                                                            
+                    <br/><br/> 
+                    <strong>No responder mail generado automaticamente.</strong>  
 
                 ",          
                 

@@ -37,7 +37,7 @@ namespace IST.RRHH.API.Controllers
 
             this.Email.SendMail(users.Email, "Enlace recuperación contraseña", string.Format(@"Estimado/a, {0}
                                                                             <br/><br/> 
-                                                                            Se ha solicitado la recuperación de su contraseña,  para continuar haga click en el siguiente <a href='" + IST.RRHH.API.AppConfig.UrlSSO + @"users/recoverynewpassword/{2}?recoveryid={1}'>enlace</a> 
+                                                                            Se ha solicitado la recuperación de su contraseña,  para continuar haga click en el siguiente <a href='" + IST.RRHH.API.AppConfig.UrlSSO + @"/recoverynewpassword/{2}?recoveryid={1}'>enlace</a> 
                                                                             <br/><br/> 
                                                                             El código de validación es: <strong> {3} </strong>
                                                                             <br/><br/> 

@@ -19,5 +19,9 @@ namespace IST.RRHH.API.Models
         public List<Claims> Claims { get; internal set; }
     }
 
+    public class WspMsg
+    {
+        public string Resultado { get; set; }
+    }
    
 }

@@ -18,6 +18,9 @@ namespace IST.Api.Models
         public string email_verified { get; set; }
         public List<Claims> Claims { get; internal set; }
     }
+    public class WspMsg
+    {
+        public string Resultado { get; set; }
+    }
 
-   
 }

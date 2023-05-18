@@ -2,6 +2,7 @@ D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.Api\obj\Release\netcoreapp3.1\P
 D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.Api\obj\Release\netcoreapp3.1\PubTmp\Out\App.Config
 D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.Api\obj\Release\netcoreapp3.1\PubTmp\Out\appsettings.json
 D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.Api\obj\Release\netcoreapp3.1\PubTmp\Out\App_Data\MockTemplate\Tarifa\Compania_43.json
+D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.Api\obj\Release\netcoreapp3.1\PubTmp\Out\App_Data\TemplateWsp\template.json
 D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.Api\obj\Release\netcoreapp3.1\PubTmp\Out\IST.Api.dll
 D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.Api\obj\Release\netcoreapp3.1\PubTmp\Out\IST.Api.runtimeconfig.json
 D:\PROJECTS\IST\RecursosHumanos_IST\IST.RRHH\IST.Api\obj\Release\netcoreapp3.1\PubTmp\Out\IST.Api.dll.config
