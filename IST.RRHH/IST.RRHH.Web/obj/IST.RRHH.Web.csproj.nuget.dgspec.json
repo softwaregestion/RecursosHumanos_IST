@@ -67,6 +67,17 @@
         "projectUniqueName": "D:\\PROJECTS\\IST\\RecursosHumanos_IST\\IST.RRHH\\IST.RRHH.Domain\\IST.RRHH.Domain.csproj",
         "projectName": "IST.RRHH.Domain",
         "projectPath": "D:\\PROJECTS\\IST\\RecursosHumanos_IST\\IST.RRHH\\IST.RRHH.Domain\\IST.RRHH.Domain.csproj",
+        "packagesPath": "C:\\Users\\espoz\\.nuget\\packages\\",
+        "projectStyle": "PackagesConfig",
+        "configFilePaths": [
+          "C:\\Users\\espoz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
         "frameworks": {
           "net472": {
             "projectReferences": {
@@ -75,7 +86,8 @@
               }
             }
           }
-        }
+        },
+        "packagesConfigPath": "D:\\PROJECTS\\IST\\RecursosHumanos_IST\\IST.RRHH\\IST.RRHH.Domain\\packages.config"
       },
       "frameworks": {
         "net472": {}
@@ -86,11 +98,23 @@
         "projectUniqueName": "D:\\PROJECTS\\IST\\RecursosHumanos_IST\\IST.RRHH\\IST.RRHH.Model\\IST.RRHH.Model.csproj",
         "projectName": "IST.RRHH.Model",
         "projectPath": "D:\\PROJECTS\\IST\\RecursosHumanos_IST\\IST.RRHH\\IST.RRHH.Model\\IST.RRHH.Model.csproj",
+        "packagesPath": "C:\\Users\\espoz\\.nuget\\packages\\",
+        "projectStyle": "PackagesConfig",
+        "configFilePaths": [
+          "C:\\Users\\espoz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
         "frameworks": {
           "net472": {
             "projectReferences": {}
           }
-        }
+        },
+        "packagesConfigPath": "D:\\PROJECTS\\IST\\RecursosHumanos_IST\\IST.RRHH\\IST.RRHH.Model\\packages.config"
       },
       "frameworks": {
         "net472": {}

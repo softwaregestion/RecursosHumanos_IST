@@ -74,6 +74,8 @@ namespace IST.RRHH.Web.Models
         public string Codigo { get; set; }
         public string Contrasena { get; set; }
         public string ContrasenaConfirmacion { get; set; }
+
+        public string Tipo { get; set; }
     }
 
       

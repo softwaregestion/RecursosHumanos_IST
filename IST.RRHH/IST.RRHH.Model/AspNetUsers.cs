@@ -42,5 +42,7 @@ namespace IST.RRHH.Model
 
         [StringLength(256)]
         public string UserName { get; set; }
+
+        public string Tipo { get; set; }
     }
 }

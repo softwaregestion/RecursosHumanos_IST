@@ -41,8 +41,8 @@ namespace IST.RRHH.Web.Controllers
                         join apellidos in context.AspNetUserClaims on new { UserId = user.Id, ClaimType = "apellido_paterno" } equals new { apellidos.UserId, apellidos.ClaimType }
                         join nombres in context.AspNetUserClaims on new { UserId = user.Id, ClaimType = "nombres" } equals new { nombres.UserId, nombres.ClaimType }
                         join rut in context.AspNetUserClaims on new { UserId = user.Id, ClaimType = "rut" } equals new { rut.UserId, rut.ClaimType }
-                        
-                        select new AplicacionesModelUsers { Id = user.Id, Username = user.UserName, Nombres = nombres.ClaimValue, Apellidos = apellidos.ClaimValue, Email = user.Email, Rut = rut.ClaimValue }).ToList();
+                        where user.Tipo == "IST"
+                        select new AplicacionesModelUsers { Id = user.Id, Username = user.UserName, Nombres = nombres.ClaimValue, Apellidos = apellidos.ClaimValue, Email = user.Email, Rut = rut.ClaimValue, Tipo = user.Tipo }).ToList();
 
             if (data.Count > 0)
             {

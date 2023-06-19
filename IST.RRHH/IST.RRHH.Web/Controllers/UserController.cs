@@ -208,7 +208,8 @@ namespace IST.RRHH.Web.Controllers
                     PhoneNumberConfirmed = false,
                     SecurityStamp = "G7LMJWIIHMSYLKNLZPQ7C4WIQ47QYY3H",
                     TwoFactorEnabled = false,
-                    UserName = model.Email.ToLower()
+                    UserName = model.Email.ToLower(),
+                    Tipo = "IST"
                 });
 
                 Context.SaveChanges();
@@ -252,7 +253,10 @@ namespace IST.RRHH.Web.Controllers
                 {
                     model.Telefono = string.Empty;
                 }
-
+                if (string.IsNullOrEmpty(model.Celular))
+                {
+                    model.Celular = string.Empty;
+                }
                 if (string.IsNullOrEmpty(model.Cargo))
                 {
                     model.Cargo = "0";
